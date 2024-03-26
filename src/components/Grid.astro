@@ -1,0 +1,23 @@
+---
+const { items } = Astro.props;
+---
+
+<ul class="list-grid">
+	{items.map((item, index) => (
+		<li>{item}</li>  
+	))}
+</ul>
+<style>
+	ul {
+		list-style: none;
+	}
+	li {
+		font-size: 0.9em;
+	}
+	.list-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+
+		padding: 0;
+	}
+</style>

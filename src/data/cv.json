@@ -1,4 +1,42 @@
 {
+    "links": [
+        {
+            "title": "jgeofil",
+            "url": "https://www.linkedin.com/in/jgeofil",
+            "icon": "linkedin",
+            "color": "0A66C2"
+        },
+        {
+            "title": "Scholar",
+            "url": "https://scholar.google.com/citations?user=x7V4H3YAAAAJ&hl=en",
+            "icon": "",
+            "color": "000"
+        },
+        {
+            "title": "jgeofil",
+            "url": "https://www.linkedin.com/in/jgeofil",
+            "icon": "assets/linkedin.svg",
+            "color": "#0A66C2"
+        },
+        {
+            "title": "jgeofil",
+            "url": "https://www.linkedin.com/in/jgeofil",
+            "icon": "assets/linkedin.svg",
+            "color": "#0A66C2"
+        },
+        {
+            "title": "jgeofil",
+            "url": "https://www.linkedin.com/in/jgeofil",
+            "icon": "assets/linkedin.svg",
+            "color": "#0A66C2"
+        },
+        {
+            "title": "jgeofil",
+            "url": "https://www.linkedin.com/in/jgeofil",
+            "icon": "assets/linkedin.svg",
+            "color": "#0A66C2"
+        }
+    ],
     "experience": [
         {
             "company": "Radboud University and The Hyve",
@@ -76,22 +114,86 @@
     ],
     "education": [
         {
-            "school": "McGill University",
+            "company": "McGill University",
             "location": "Montreal, Canada",
-            "degree": "MSc Computer Science",
+            "title": "MSc Computer Science",
             "date": "2016 - 2018",
-            "notes":[
+            "description":[
                 "Thesis: Machine learning and population genetics"
             ]
         },
         {
-            "school": "Université Laval",
+            "company": "Université Laval",
             "location": "Québec City, Canada",
-            "degree": "BSc Bioinformatics",
+            "title": "BSc Bioinformatics",
             "date": "2012 - 2016",
-            "notes": [
-                "International Profile: Université de Strasbourg - Strasbourg, France"
+            "description": [
+                "International Profile (Fall 2014 - Winter 2015): Université de Strasbourg - Strasbourg, France"
             ]
         }
+    ],
+    "publications": [
+        {
+            "title": "Synthetic Observational Health Data with GANs: from slow adoption to a boom in medical research and ultimately digital twins?",
+            "authors": "J. Georges-Filteau and E. Cirillo",
+            "date": "2020",
+            "journal": "arXiv preprint arXiv:2005.13510",
+            "url": ""
+        },
+        {
+            "title": "Benchmarking big observational health data",
+            "authors": "B. Katsma and J. Georges-Filteau",
+            "date": "2020",
+            "journal": "Authorea Preprints",
+            "url": ""
+        },
+        {
+            "title": "Mycorrhiza: Genotype assignment using phylogenetic networks",
+            "authors": "J. Georges-Filteau, R. C. Hamelin, and M. Blanchette",
+            "date": "2020",
+            "journal": "Bioinformatics, vol. 36, no. 1, pp. 212–220",
+            "url": ""
+        },
+        {
+            "title": "Machine learning methods for genotype assignment",
+            "authors": "J. Georges-Filteau",
+            "date": "2019",
+            "journal": "McGill University",
+            "url": ""
+        },
+        {
+            "title": "Sentiment analysis: It’s complicated!",
+            "authors": "K. Kenyon-Dean et al.",
+            "date": "2018",
+            "journal": "Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long Papers), 2018, pp. 1886–1895",
+            "url": ""
+        }
+    ],
+    "skills": [
+        "Python",
+        "Machine Learning",
+        "Data Analysis",
+        "Data Visualization",
+        "Databases",
+        "Web Development",
+        "JavaScript",
+        "AngularJS",
+        "Node.js",
+        "HTML",
+        "CSS",
+        "R",
+        "Bioinformatics",
+        "Proteomics",
+        "Genomics",
+        "Population Genetics",
+        "Phylogenetics",
+        "Protein Identification",
+        "Drosophila melanogaster",
+        "Scientific Research",
+        "Teaching",
+        "Leadership",
+        "Mentoring",
+        "Critical Thinking",
+        "Problem-Solving"
     ]
 }

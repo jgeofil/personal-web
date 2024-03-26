@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 
 import DatedRow from '../components/DatedRow.astro';
+import Publication from '../components/Publication.astro';
+import Grid from '../components/Grid.astro';
+import LinkGrid from '../components/LinkGrid.astro';
 
 import cvData from '../data/cv.json';
 
@@ -11,13 +14,34 @@ export const prerender = true;
 <Layout title="Welcome to Astro.">
 	<main>
 		<h1>Jeremy Georges-Filteau</h1>
-		
+		<LinkGrid items={cvData.links} />
 		<h2>Experience</h2>
 		<table>
 			<tbody>
 				{cvData.experience.map((job) => (
 					<DatedRow row={job} />
 				))}
+			</tbody>
+		</table>
+
+		<h2>Education</h2>
+		<table>
+			<tbody>
+				{cvData.education.map((school) => (
+					<DatedRow row={school} />
+				))}
+			</tbody>
+		</table>
+
+		<h2>Skills</h2>
+		<Grid items={cvData.skills} />
+
+		<h2>Publications</h2>
+		<table>
+			<tbody>
+			{cvData.publications.map((publication) => (
+				<Publication row={publication} />
+			))}
 			</tbody>
 		</table>
 	</main>

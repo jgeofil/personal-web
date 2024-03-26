@@ -1,0 +1,29 @@
+---
+const { items } = Astro.props;
+---
+
+<ul class="list-grid">
+	{items.map((item, index) => (
+		<li><img src={`https://cdn.simpleicons.org/${item.icon}/${item.color}`} /><a href={item.url}>{item.title}</a></li>  
+	))}
+</ul>
+<style>
+	ul {
+		list-style: none;
+	}
+	li {
+		font-size: 0.9em;
+	}
+	.list-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+
+		padding: 0;
+	}
+
+	img {
+		width: 16px;
+		height: 16px;
+		margin-right: 0.5em;
+	}
+</style>

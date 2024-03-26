@@ -42,6 +42,7 @@ const { title } = Astro.props as Props;
 		--color-text: hsl(12, 5%, 4%);
 		--color-bg: hsl(0, 0%, 95%);
 		--color-border: hsl(17, 24%, 90%);
+		--color-link: hsl(216, 100%, 16%);
 	}
 
 	html {
@@ -49,6 +50,10 @@ const { title } = Astro.props as Props;
 		font-size: var(--font-size-base);
 		color: var(--color-text);
 		background-color: var(--color-bg);
+	}
+
+	:global(a) {
+		color: var(--color-link);
 	}
 
 	body {

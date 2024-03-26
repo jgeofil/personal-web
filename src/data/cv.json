@@ -158,30 +158,45 @@
         }
     ],
     "skills": [
-        "Python",
         "Machine Learning",
-        "Data Analysis",
-        "Data Visualization",
+        "Generative AI, GANs",
+        "NLP",
+        "Python, R",
+        "Data Analysis / Visualization",
+        "TensorFlow, PyTorch",
         "Databases",
         "Web Development",
-        "JavaScript",
-        "AngularJS",
-        "Node.js",
-        "HTML",
-        "CSS",
-        "R",
+        "HTML, CSS, JS",
         "Bioinformatics",
         "Proteomics",
         "Genomics",
         "Population Genetics",
         "Phylogenetics",
-        "Protein Identification",
-        "Drosophila melanogaster",
         "Scientific Research",
-        "Teaching",
-        "Leadership",
-        "Mentoring",
+        "Teaching, Mentoring",
         "Critical Thinking",
         "Problem-Solving"
+    ],
+    "projects": [
+        {
+            "title": "ML Readme",
+            "description": "A technical blog on machine learning research and applications.",
+            "date": "2024 - Present",
+            "url": "https://mlread.me"
+        },
+        {
+            "title": "Web development",
+            "description": "I helped the non-profit organization 'Cours ta réussite' update their website.",
+            "date": "2024",
+            "url": "https://courstareussite.com"
+
+        }
+    ],
+    "interests": [
+        "Reading, learning",
+        "Climbing, cycling, running",
+        "Traveling",
+        "Arts and music",
+        "Gaming and board games"
     ]
 }

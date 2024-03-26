@@ -9,32 +9,20 @@
         {
             "title": "Scholar",
             "url": "https://scholar.google.com/citations?user=x7V4H3YAAAAJ&hl=en",
-            "icon": "",
+            "icon": "googlescholar",
+            "color": "4285F4"
+        },
+        {
+            "title": "jgeofil",
+            "url": "https://github.com/jgeofil",
+            "icon": "github",
+            "color": "181717"
+        },
+        {
+            "title": "jgeofil",
+            "url": "https://twitter.com/jgeofil",
+            "icon": "x",
             "color": "000"
-        },
-        {
-            "title": "jgeofil",
-            "url": "https://www.linkedin.com/in/jgeofil",
-            "icon": "assets/linkedin.svg",
-            "color": "#0A66C2"
-        },
-        {
-            "title": "jgeofil",
-            "url": "https://www.linkedin.com/in/jgeofil",
-            "icon": "assets/linkedin.svg",
-            "color": "#0A66C2"
-        },
-        {
-            "title": "jgeofil",
-            "url": "https://www.linkedin.com/in/jgeofil",
-            "icon": "assets/linkedin.svg",
-            "color": "#0A66C2"
-        },
-        {
-            "title": "jgeofil",
-            "url": "https://www.linkedin.com/in/jgeofil",
-            "icon": "assets/linkedin.svg",
-            "color": "#0A66C2"
         }
     ],
     "experience": [

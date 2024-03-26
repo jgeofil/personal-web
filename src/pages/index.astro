@@ -1,17 +1,34 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SocialGrid from '../components/SocialGrid.astro';
 import Card from '../components/Card.astro';
-
+import cvData from '../data/cv.json';
 export const prerender = true;
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<h1>Jeremy Georges-Filteau</h1>
+		<div>
+			<img class="profile-img" src="src/assets/profile.jpg" alt="Jeremy Georges-Filteau" width="200" height="200" />
+			
+			
+			<div class="about">
+				<h1>About me</h1>
+				<p>
+					I'm Jeremy Georges-Filteau, a Machine Learning Engineer and Computational Biologist from Québec city, Canada.
+				</p>
+			</div>
+		</div>
+		
 		
 		<ul role="list" class="link-card-grid">
-			<a href="cv" class="button">CV</a>
+			<Card
+				href="cv"
+				title="CV"
+				body="You can find my CV here."
+			/>
 		</ul>
+		<SocialGrid items={cvData.links}/>
 	</main>
 </Layout>
 
@@ -22,10 +39,20 @@ export const prerender = true;
 		max-width: 60ch;
 	}
 
+	.profile-img {
+		border-radius: 50%;
+		float: left;
+		margin-right: 25px;
+	}
+
+	.about {
+		margin-left: 25px;
+	}
+
 	.link-card-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		grid-template-columns: repeat(2, minmax(24ch, 1fr));
 		gap: 1rem;
-		padding: 0;
+		padding: 50px 0 0 0;
 	}
 </style>

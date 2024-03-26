@@ -27,6 +27,16 @@
     ],
     "experience": [
         {
+            "company": "NeoAI Health",
+            "location": "Utrecht, Netherlands",
+            "title": "Founder",
+            "date": "2021 - 2023",
+            "description": [
+                "Launched a healthcare generative AI startup, leveraging expertise developed during my doctoral research.", 
+                "Conducted in-depth market research to assess the potential for synthetic data solutions in the healthcare sector."
+            ]
+        },
+        {
             "company": "Radboud University and The Hyve",
             "location": "Nijmegen and Utrecht, Netherlands",
             "title": "Doctoral Researcher",
@@ -159,6 +169,7 @@
     ],
     "skills": [
         "Machine Learning",
+        "Deep Learning",
         "Generative AI, GANs",
         "NLP",
         "Python, R",
@@ -168,14 +179,11 @@
         "Web Development",
         "HTML, CSS, JS",
         "Bioinformatics",
-        "Proteomics",
-        "Genomics",
         "Population Genetics",
         "Phylogenetics",
         "Scientific Research",
-        "Teaching, Mentoring",
-        "Critical Thinking",
-        "Problem-Solving"
+        "Technical Writting",
+        "Teaching, Mentoring"
     ],
     "projects": [
         {
@@ -192,6 +200,41 @@
 
         }
     ],
+    "certificates": [
+        {
+            "title": "DeepLearning.AI TensorFlow Developer",
+            "description": "Coursera",
+            "date": "2024",
+            "url": "https://www.coursera.org/account/accomplishments/specialization/D86T79KGDSFC"
+        },
+        {
+            "title": "TensorFlow: Advanced Techniques",
+            "description": "Coursera",
+            "date": "2024",
+            "url": "https://www.coursera.org/account/accomplishments/specialization/TSTRWPG473TN"
+
+        }
+    ],
+    "grants": [
+        {
+            "title": "PhD funding, Early-stage Researcher fellowship",
+            "description": "Marie Skłodowska-Curie Actions, EU",
+            "date": "2018 - 2021",
+            "url": "https://www.cordis.europa.eu/project/id/764281"
+        },
+        {
+            "title": "MSc funding",
+            "description": "BIOSAFE project, Genome Canada",
+            "date": "2016 - 2018",
+            "url": "https://genomecanada.ca/project/biosurveillance-alien-forest-enemies-biosafe/"
+        }
+    ],
+    "languages": [
+        "French (native)",
+        "English (native)",
+        "Dutch (basic)"
+    ],
+
     "interests": [
         "Reading, learning",
         "Climbing, cycling, running",

@@ -1,0 +1,23 @@
+---
+const { row } = Astro.props;
+---
+
+<tr>
+	<td class="date-col">{row.date}</td>
+	<td><b>{row.title}</b> <a href={row.url}>{row.description}</a></td>
+</tr>
+<style>
+	table {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	td {
+		padding-right: 0.5em;
+		vertical-align: top;
+	}
+
+	.date-col {
+		width: 15%;
+	}
+</style>

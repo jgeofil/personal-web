@@ -1,0 +1,98 @@
+{
+    "experience": [
+        {
+            "company": "Radboud University and The Hyve",
+            "location": "Nijmegen and Utrecht, Netherlands",
+            "title": "Doctoral Researcher",
+            "date": "2018 - 2021",
+            "description": [
+                "Collaborated with academia and industry as an <a>MSCA-ITN</a>, Early-stage Researcher fellowship recipient.",
+                "Explored the innovative use of Generative Adversarial Networks (GANs) for privacy-preserving healthcare data synthesis.",
+                "Authored a foundational literature review on the topic."
+            ]
+        },
+        {
+            "company": "The Hyve",
+            "location": "Utrecht, Netherlands",
+            "title": "Research Project Supervisor",
+            "date": "Jan - Jul 2020",
+            "description": [
+                "Supervised and mentored an MSc student on a research project exploring database performance and analytical queries within observational health data.",
+                "Provided technical guidance and support in Python-based data analysis and database management.",
+                "Fostered critical thinking, problem-solving, and research skills in a real-world data science project."
+            ]
+        },
+        {
+            "company": "Data Science Institute, Imperial College",
+            "location": "London, UK",
+            "title": "Visiting Researcher",
+            "date": "Jun - Jul 2019",
+            "description": [
+                "Secondment program under MSCA-ITN.",
+                "Conducted focused research on cutting-edge applications of generative machine learning and GANs within the healthcare domain."
+            ]
+        },
+        {
+            "company": "McGill University",
+            "location": "Montreal, Canada",
+            "title": "Lead Teaching Assistant",
+            "date": "2017 - 2018",
+            "description": [
+                "Coordinated a team of TAs, providing leadership and ensuring a consistent student experience.",
+                "Developed evaluation materials and managed online assessments for courses in Bioinformatics and Java."
+            ]
+        },
+        {
+            "company": "Institute of integrative biology and systems",
+            "location": "Québec City, Canada",
+            "title": "Full-stack Developer",
+            "date": "Jan - Aug 2016",
+            "description": [
+                "Collaborated with researchers to create a web platform for proteomics research data.",
+                "Translated complex scientific data into intuitive visualizations using D3.js.",
+                "Implemented a responsive and efficient web application using Node.js and AngularJS frameworks."
+            ]
+        },
+        {
+            "company": "The Hyve",
+            "location": "Utrecht, Netherlands",
+            "title": "Frontend Developer (Internship)",
+            "date": "May - Aug 2015",
+            "description": [
+                "Prototyped a new, user-centric UI for an open-source clinical research platform, improving data accessibility.",
+                "Developed a scalable plugin architecture to support advanced statistical analysis functionalities and future growth.",
+                "Built efficient and responsive interfaces using AngularJS, JavaScript, HTML, CSS, and R."
+            ]
+        },
+        {
+            "company": "IBMC - Réponse Immunitaire et Développement chez les Insectes",
+            "location": "Strasbourg, France",
+            "title": "Bioinformatician (Internship)",
+            "date": "Mar 2015",
+            "description": [
+                "Adapted a protein identification algorithm from literature for use with Drosophila melanogaster.",
+                "Performed data analysis and manipulation in Python to support genetics research."
+            ]
+        }
+    ],
+    "education": [
+        {
+            "school": "McGill University",
+            "location": "Montreal, Canada",
+            "degree": "MSc Computer Science",
+            "date": "2016 - 2018",
+            "notes":[
+                "Thesis: Machine learning and population genetics"
+            ]
+        },
+        {
+            "school": "Université Laval",
+            "location": "Québec City, Canada",
+            "degree": "BSc Bioinformatics",
+            "date": "2012 - 2016",
+            "notes": [
+                "International Profile: Université de Strasbourg - Strasbourg, France"
+            ]
+        }
+    ]
+}

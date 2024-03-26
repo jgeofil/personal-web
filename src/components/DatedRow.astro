@@ -1,0 +1,20 @@
+---
+import List from "./List.astro";
+
+const { row } = Astro.props;
+
+---
+
+<tr>
+	<td class="date-col">{row.date}</td>
+	<td><b>{row.title}</b>
+		
+		{row.company} &ndash; {row.location}
+		<br>
+		<List items={row.description}>
+		</List>
+		</td>
+</tr>
+<style>
+
+</style>

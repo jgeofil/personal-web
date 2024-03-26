@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import DatedRow from '../components/DatedRow.astro';
+
+import cvData from '../data/cv.json';
+
+export const prerender = true;
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+		<h1>Jeremy Georges-Filteau</h1>
+		
+		<h2>Experience</h2>
+		<table>
+			<tbody>
+				{cvData.experience.map((job) => (
+					<DatedRow row={job} />
+				))}
+			</tbody>
+		</table>
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1em;
+		max-width: 8.5in;
+		font-size: 0.8em;
+	}
+
+	h1 {
+		font-size: 2.5em;
+	}
+
+	h2 {
+		font-size: 1.5em;
+	}
+
+	table {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	td {
+		padding-right: 0.5em;
+		vertical-align: top;
+	}
+
+	.date-col {
+		width: 15%;
+	}
+</style>

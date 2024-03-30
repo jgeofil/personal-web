@@ -63,8 +63,7 @@
             "title": "Visiting Researcher",
             "date": "Jun - Jul 2019",
             "description": [
-                "Secondment program under MSCA-ITN.",
-                "Conducted focused research on cutting-edge applications of generative machine learning and GANs within the healthcare domain."
+                "Secondment program under MSCA-ITN grant: Conducted focused research on cutting-edge applications of generative machine learning and GANs within the healthcare domain."
             ]
         },
         {
@@ -94,9 +93,9 @@
             "title": "Frontend Developer (Internship)",
             "date": "May - Aug 2015",
             "description": [
-                "Prototyped a new, user-centric UI for an open-source clinical research platform, improving data accessibility.",
+                "Prototyped a new UI for an open-source clinical research platform, improving data accessibility.",
                 "Developed a scalable plugin architecture to support advanced statistical analysis functionalities and future growth.",
-                "Built efficient and responsive interfaces using AngularJS, JavaScript, HTML, CSS, and R."
+                "Built an efficient and modular web application using AngularJS, JavaScript, HTML, CSS, and R."
             ]
         },
         {

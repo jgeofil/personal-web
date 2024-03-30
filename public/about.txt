@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Gasoek One
+- Font Author: Copyright 2022 The Gasoek Project Authors (https://github.com/JAMO-TYPEFACE/Gasoek)
+- Font Source: https://fonts.gstatic.com/s/gasoekone/v3/EJRTQgQ_UMUKvDgnlX80zrq_cyb-vco.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))

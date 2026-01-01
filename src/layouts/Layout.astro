@@ -1,11 +1,14 @@
 ---
 import SpeedInsights from '@vercel/speed-insights/astro';
+import { checkGate } from '../flags';
+
 export interface Props {
 	title: string;
 	description: string;
 }
 
 const { title, description } = Astro.props as Props;
+const showFooter = checkGate(Astro, "test_header_change");
 ---
 
 <!DOCTYPE html>
@@ -48,6 +51,7 @@ const { title, description } = Astro.props as Props;
 	<body>
 		<slot />
 		<SpeedInsights />
+		{showFooter && <footer>This is a footer</footer>}
 	</body>
 </html>
 <style>

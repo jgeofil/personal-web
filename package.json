@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@astrojs/vercel": "3.8.2",
+    "@statsig/vercel-edge": "^3.31.0",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "astro": "^2.10.14",

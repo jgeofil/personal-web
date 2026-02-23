@@ -10,6 +10,7 @@ const { title, description } = Astro.props as Props;
 
 <!doctype html>
 <html lang="en">
+<<<<<<< HEAD
     <head>
         <!-- Google Tag Manager -->
         <script is:inline>
@@ -80,6 +81,64 @@ const { title, description } = Astro.props as Props;
         <slot />
         <SpeedInsights />
     </body>
+=======
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">
+		<meta name="generator" content={Astro.generator} />
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+		<script>
+			import { StatsigClient } from '@statsig/js-client';
+import { StatsigSessionReplayPlugin } from '@statsig/session-replay';
+import { StatsigAutoCapturePlugin } from '@statsig/web-analytics';
+import { webVitals } from "../lib/vitals";
+
+			let analyticsId = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;
+			let statsigKey = import.meta.env.PUBLIC_STATSIG_CLIENT_KEY;
+
+			if (analyticsId) {
+				webVitals({
+					path: location.pathname,
+					params: location.search,
+					analyticsId,
+				});
+			}
+
+			if (statsigKey) {
+				const statsig = new StatsigClient(statsigKey, {}, {
+					plugins: [
+						new StatsigAutoCapturePlugin(),
+						new StatsigSessionReplayPlugin()
+					]
+				});
+
+				// Initialize
+				statsig.initializeAsync().catch(console.error);
+			}
+		</script>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-N20WHVY3SH"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-N20WHVY3SH');
+		</script>
+		<!-- End Google tag (gtag.js) -->
+	</head>
+	<body>
+		<slot />
+		<SpeedInsights />
+	</body>
+>>>>>>> 5440d63 (feat: Integrate Statsig for web analytics, adopt Bun for package management, and configure Astro content collection types.)
 </html>
 <style>
     :root {

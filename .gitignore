@@ -22,4 +22,7 @@ pnpm-debug.log*
 
 *.log
 .astro/
+<<<<<<< HEAD
 package-lock.json
+=======
+>>>>>>> 06791a9 (feat: Integrate Google Tag Manager, replacing direct Google Analytics, and update Astro configuration and type references.)

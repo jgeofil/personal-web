@@ -1,110 +1,131 @@
 ---
-import SpeedInsights from '@vercel/speed-insights/astro';
+import SpeedInsights from "@vercel/speed-insights/astro";
 export interface Props {
-	title: string;
-	description: string;
+    title: string;
+    description: string;
 }
 
 const { title, description } = Astro.props as Props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-		<link rel="manifest" href="/site.webmanifest">
-		<meta name="generator" content={Astro.generator} />
-		<meta name="title" content={title} />
-		<meta name="description" content={description} />
-		<title>{title}</title>
-		<script>
-			import { StatsigClient } from '@statsig/js-client';
-import { StatsigSessionReplayPlugin } from '@statsig/session-replay';
-import { StatsigAutoCapturePlugin } from '@statsig/web-analytics';
-import { webVitals } from "../lib/vitals";
+    <head>
+        <!-- Google Tag Manager -->
+        <script is:inline>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-55MBXTJF");
+        </script>
+        <!-- End Google Tag Manager -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="title" content={title} />
+        <meta name="description" content={description} />
+        <title>{title}</title>
+        <script>
+            import { StatsigClient } from "@statsig/js-client";
+            import { StatsigSessionReplayPlugin } from "@statsig/session-replay";
+            import { StatsigAutoCapturePlugin } from "@statsig/web-analytics";
+            import { webVitals } from "../lib/vitals";
 
-			let analyticsId = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;
-			let statsigKey = import.meta.env.PUBLIC_STATSIG_CLIENT_KEY;
+            let analyticsId = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;
+            let statsigKey = import.meta.env.PUBLIC_STATSIG_CLIENT_KEY;
 
-			if (analyticsId) {
-				webVitals({
-					path: location.pathname,
-					params: location.search,
-					analyticsId,
-				});
-			}
+            if (analyticsId) {
+                webVitals({
+                    path: location.pathname,
+                    params: location.search,
+                    analyticsId,
+                });
+            }
 
-			if (statsigKey) {
-				const statsig = new StatsigClient(statsigKey, {}, {
-					plugins: [
-						new StatsigAutoCapturePlugin(),
-						new StatsigSessionReplayPlugin()
-					]
-				});
+            if (statsigKey) {
+                const statsig = new StatsigClient(
+                    statsigKey,
+                    {},
+                    {
+                        plugins: [new StatsigAutoCapturePlugin(), new StatsigSessionReplayPlugin()],
+                    },
+                );
 
-				// Initialize
-				statsig.initializeAsync().catch(console.error);
-			}
-		</script>
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-N20WHVY3SH"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-
-			gtag('config', 'G-N20WHVY3SH');
-		</script>
-		<!-- End Google tag (gtag.js) -->
-	</head>
-	<body>
-		<slot />
-		<SpeedInsights />
-	</body>
+                // Initialize
+                statsig.initializeAsync().catch(console.error);
+            }
+        </script>
+    </head>
+    <body>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript
+            ><iframe
+                src="https://www.googletagmanager.com/ns.html?id=GTM-55MBXTJF"
+                height="0"
+                width="0"
+                style="display:none;visibility:hidden"></iframe></noscript
+        >
+        <!-- End Google Tag Manager (noscript) -->
+        <slot />
+        <SpeedInsights />
+    </body>
 </html>
 <style>
-	:root {
-		--font-size-sm: clamp(0.875rem, 0.5vw + 0.5rem, 1rem);
-		--font-size-base: clamp(1rem, 0.3vw + 1rem, 1.2rem);
-		--font-size-lg: clamp(1.2rem, 0.7vw + 1.2rem, 1.5rem);
-		--font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+    :root {
+        --font-size-sm: clamp(0.875rem, 0.5vw + 0.5rem, 1rem);
+        --font-size-base: clamp(1rem, 0.3vw + 1rem, 1.2rem);
+        --font-size-lg: clamp(1.2rem, 0.7vw + 1.2rem, 1.5rem);
+        --font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
 
-		--color-text: hsl(12, 5%, 4%);
-		--color-bg: hsl(0, 0%, 95%);
-		--color-border: hsl(17, 24%, 90%);
-		--color-link: hsl(216, 100%, 16%);
-	}
+        --color-text: hsl(12, 5%, 4%);
+        --color-bg: hsl(0, 0%, 95%);
+        --color-border: hsl(17, 24%, 90%);
+        --color-link: hsl(216, 100%, 16%);
+    }
 
-	html {
-		font-family: system-ui, sans-serif;
-		font-size: var(--font-size-base);
-		color: var(--color-text);
-		background-color: var(--color-bg);
-	}
+    html {
+        font-family: system-ui, sans-serif;
+        font-size: var(--font-size-base);
+        color: var(--color-text);
+        background-color: var(--color-bg);
+    }
 
-	:global(a) {
-		color: var(--color-link);
-	}
+    :global(a) {
+        color: var(--color-link);
+    }
 
-	body {
-		margin: 0;
-	}
+    body {
+        margin: 0;
+    }
 
-	:global(h1) {
-		font-size: var(--font-size-xl);
-	}
+    :global(h1) {
+        font-size: var(--font-size-xl);
+    }
 
-	:global(h2) {
-		font-size: var(--font-size-lg);
-	}
+    :global(h2) {
+        font-size: var(--font-size-lg);
+    }
 
-	:global(code) {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
+    :global(code) {
+        font-family:
+            Menlo,
+            Monaco,
+            Lucida Console,
+            Liberation Mono,
+            DejaVu Sans Mono,
+            Bitstream Vera Sans Mono,
+            Courier New,
+            monospace;
+    }
 </style>

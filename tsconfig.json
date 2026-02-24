@@ -5,7 +5,11 @@
       "ESNext"
     ],
     "target": "ESNext",
+<<<<<<< HEAD
     "module": "esnext",
+=======
+    "module": "ESNext",
+>>>>>>> 7aaea74 (feat: Integrate Google Tag Manager, replacing direct Google Analytics, and update Astro configuration and type references.)
     "moduleDetection": "force",
     "jsx": "react-jsx",
     "allowJs": true,

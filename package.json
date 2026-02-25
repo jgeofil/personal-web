@@ -1,8 +1,4 @@
 {
-<<<<<<< HEAD
-
-=======
->>>>>>> b68a887 (feat: Integrate Statsig for web analytics, adopt Bun for package management, and configure Astro content collection types.)
 	"private": true,
 	"type": "module",
 	"version": "0.1.0",
@@ -18,32 +14,17 @@
 		"@statsig/js-client": "^3.31.2",
 		"@statsig/session-replay": "^3.31.2",
 		"@statsig/web-analytics": "^3.31.2",
-<<<<<<< HEAD
 		"@vercel/analytics": "^1.2.2",
 		"@vercel/speed-insights": "^1.0.10",
 		"astro": "^5.0.0",
 		"react": "18.3.1",
 		"web-vitals": "^4.2.4"
-=======
-		"@vercel/analytics": "^1.4.1",
-		"@vercel/speed-insights": "^1.0.10",
-		"astro": "^5.0.0",
-		"react": "18.2.0",
-		"web-vitals": "^3.3.1"
->>>>>>> b68a887 (feat: Integrate Statsig for web analytics, adopt Bun for package management, and configure Astro content collection types.)
 	},
 	"name": "personal-web",
 	"devDependencies": {
 		"@types/bun": "latest"
-<<<<<<< HEAD
-	}
-    "peerDependencies": {
-        "typescript": "^5"
-    }
-=======
 	},
 	"peerDependencies": {
 		"typescript": "^5"
 	}
->>>>>>> b68a887 (feat: Integrate Statsig for web analytics, adopt Bun for package management, and configure Astro content collection types.)
 }

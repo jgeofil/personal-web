@@ -24,9 +24,6 @@
 	"name": "personal-web",
 	"devDependencies": {
 		"@types/bun": "latest"
-	},
-	"peerDependencies": {
-		"typescript": "^5"
 	}
     "peerDependencies": {
         "typescript": "^5"

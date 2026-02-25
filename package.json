@@ -1,5 +1,4 @@
 {
-
 	"private": true,
 	"type": "module",
 	"version": "0.1.0",
@@ -24,8 +23,8 @@
 	"name": "personal-web",
 	"devDependencies": {
 		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
 	}
-    "peerDependencies": {
-        "typescript": "^5"
-    }
 }

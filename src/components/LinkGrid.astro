@@ -4,7 +4,21 @@ const { items } = Astro.props;
 
 <ul class="list-grid">
 	{items.map((item, index) => (
-		<li><img src={`https://cdn.simpleicons.org/${item.icon}/${item.color}`} /><a href={item.url}>{item.title}</a></li>  
+		<li>
+			<img
+				src={`https://cdn.simpleicons.org/${item.icon}/${item.color}`}
+				alt=""
+				aria-hidden="true"
+			/>
+			<a
+				href={item.url}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="text-link"
+			>
+				{item.title}
+			</a>
+		</li>
 	))}
 </ul>
 <style>
@@ -25,5 +39,22 @@ const { items } = Astro.props;
 		width: 16px;
 		height: 16px;
 		margin-right: 0.5em;
+	}
+
+	.text-link {
+		transition: color 0.2s ease-in-out;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 2px;
+	}
+
+	.text-link:hover,
+	.text-link:focus-visible {
+		color: #1a891a;
+	}
+
+	.text-link:focus-visible {
+		outline: 2px solid #1a891a;
+		outline-offset: 4px;
+		border-radius: 2px;
 	}
 </style>

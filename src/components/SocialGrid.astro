@@ -4,7 +4,21 @@ const { items } = Astro.props;
 
 <ul class="list-grid">
 	{items.map((item, index) => (
-		<li><a href={item.url}><img src={item.icon_url ? item.icon_url : `https://cdn.simpleicons.org/${item.icon}/${item.color}`} /></a></li>
+		<li>
+			<a
+				href={item.url}
+				aria-label={item.title || item.icon}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="social-link"
+			>
+				<img
+					src={item.icon_url ? item.icon_url : `https://cdn.simpleicons.org/${item.icon}/${item.color}`}
+					alt=""
+					aria-hidden="true"
+				/>
+			</a>
+		</li>
 	))}
 </ul>
 <style>
@@ -24,6 +38,21 @@ const { items } = Astro.props;
 	img {
 		width: 48px;
 		height: 48px;
+		transition: transform 0.2s ease-in-out;
+	}
 
+	.social-link {
+		display: inline-block;
+		border-radius: 50%;
+	}
+
+	.social-link:hover img,
+	.social-link:focus-visible img {
+		transform: scale(1.1);
+	}
+
+	.social-link:focus-visible {
+		outline: 2px solid #1a891a;
+		outline-offset: 4px;
 	}
 </style>

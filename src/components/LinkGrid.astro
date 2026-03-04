@@ -4,7 +4,18 @@ const { items } = Astro.props;
 
 <ul class="list-grid">
 	{items.map((item, index) => (
-		<li><img src={`https://cdn.simpleicons.org/${item.icon}/${item.color}`} /><a href={item.url}>{item.title}</a></li>  
+		<li>
+			<!-- ⚡ Bolt: Optimize external images by adding explicit dimensions (CLS), loading="lazy", and decoding="async" -->
+			<img
+				src={`https://cdn.simpleicons.org/${item.icon}/${item.color}`}
+				alt={item.title}
+				width="16"
+				height="16"
+				loading="lazy"
+				decoding="async"
+			/>
+			<a href={item.url}>{item.title}</a>
+		</li>
 	))}
 </ul>
 <style>

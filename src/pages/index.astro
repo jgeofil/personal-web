@@ -9,7 +9,8 @@ export const prerender = true;
 <Layout title="Jeremy Georges-Filteau - About me" description='Learn more about me.'>
 	<main>
 		<div>
-			<img class="profile-img" src="/profile.jpg" alt="Jeremy Georges-Filteau" width="200" height="200" />
+			<!-- ⚡ Bolt: Optimize LCP image with fetchpriority="high" and decoding="async" for faster initial paint -->
+			<img class="profile-img" src="/profile.jpg" alt="Jeremy Georges-Filteau" width="200" height="200" fetchpriority="high" decoding="async" />
 			
 			
 			<div class="about">

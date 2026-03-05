@@ -1,0 +1,3 @@
+## 2024-05-24 - Icon Link Accessibility
+**Learning:** Icon-only links and decorative images in Astro components (`SocialGrid.astro`, `LinkGrid.astro`) were missing proper ARIA attributes, making them inaccessible to screen readers.
+**Action:** Added `aria-label` to the links, dynamically falling back to the icon name if a title wasn't available. Added `alt=""` and `aria-hidden="true"` to the decorative images to hide them from assistive technologies.

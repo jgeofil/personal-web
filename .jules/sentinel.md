@@ -1,0 +1,4 @@
+## 2024-05-15 - [Prevent Reverse Tabnabbing]
+**Vulnerability:** External links in Astro components lacked `rel="noopener noreferrer"`.
+**Learning:** This codebase uses external links in many `.astro` components (e.g., LinkGrid, SocialGrid). Without `rel="noopener noreferrer"`, the newly opened tab can potentially gain partial access to the original tab's `window` object via `window.opener`, allowing it to redirect the original page to a malicious site (reverse tabnabbing).
+**Prevention:** All external links (`target="_blank"`) within Astro components must always include `rel="noopener noreferrer"`.

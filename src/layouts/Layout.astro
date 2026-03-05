@@ -37,9 +37,6 @@ const { title, description } = Astro.props as Props;
         <meta name="description" content={description} />
         <title>{title}</title>
         <script>
-            import { StatsigClient } from "@statsig/js-client";
-            import { StatsigSessionReplayPlugin } from "@statsig/session-replay";
-            import { StatsigAutoCapturePlugin } from "@statsig/web-analytics";
             import { webVitals } from "../lib/vitals";
 
             let analyticsId = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;
@@ -54,16 +51,27 @@ const { title, description } = Astro.props as Props;
             }
 
             if (statsigKey) {
-                const statsig = new StatsigClient(
-                    statsigKey,
-                    {},
-                    {
-                        plugins: [new StatsigAutoCapturePlugin(), new StatsigSessionReplayPlugin()],
-                    },
-                );
+                // Dynamically import Statsig to reduce initial bundle size and speed up page load
+                Promise.all([
+                    import("@statsig/js-client"),
+                    import("@statsig/session-replay"),
+                    import("@statsig/web-analytics")
+                ]).then(([
+                    { StatsigClient },
+                    { StatsigSessionReplayPlugin },
+                    { StatsigAutoCapturePlugin }
+                ]) => {
+                    const statsig = new StatsigClient(
+                        statsigKey,
+                        {},
+                        {
+                            plugins: [new StatsigAutoCapturePlugin(), new StatsigSessionReplayPlugin()],
+                        },
+                    );
 
-                // Initialize
-                statsig.initializeAsync().catch(console.error);
+                    // Initialize
+                    statsig.initializeAsync().catch(console.error);
+                });
             }
         </script>
     </head>

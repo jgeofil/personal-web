@@ -1,0 +1,3 @@
+## 2024-05-17 - Accessible Icon-Only Links in Astro Components
+**Learning:** Decorative icons in `<a>` tags inside Astro components need specific attributes to be screen-reader friendly. Without a dynamic `aria-label` on the anchor and `alt="" aria-hidden="true"` on the image, screen readers may announce the image source URL, leading to a confusing and noisy user experience.
+**Action:** Always ensure that icon-only links use `aria-label` on the `<a>` tag and explicitly hide the decorative `<img>` with `alt="" aria-hidden="true"`.

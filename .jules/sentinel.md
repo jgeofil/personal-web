@@ -1,0 +1,4 @@
+## 2024-05-18 - Missing global security headers for Vercel deployment
+**Vulnerability:** The project deployed on Vercel was missing important security headers, such as Content Security Policy, X-Frame-Options, Strict-Transport-Security, and X-XSS-Protection.
+**Learning:** For a project deployed on Vercel, global security headers should be configured centrally via a `vercel.json` file in the root directory. This provides a clean, framework-agnostic way to enforce defense-in-depth protections across all routes.
+**Prevention:** Always ensure that static/SSR deployment configurations include a baseline set of security headers, especially when deploying on platforms like Vercel or Netlify.

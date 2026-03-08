@@ -1,0 +1,3 @@
+## 2024-05-18 - [Optimize Statsig imports]
+**Learning:** Initial bundle sizes for Astro layouts can be significantly impacted by statically importing non-critical or conditional third-party libraries like Statsig, which block rendering and inflate the payload size.
+**Action:** When a third-party library is not immediately required or only conditionally loaded (like Statsig analytics checking for an API key), use dynamic imports (`import()`) inside the condition. This ensures the library is only downloaded and executed if needed, preventing it from blocking the initial render and enabling proper code splitting.

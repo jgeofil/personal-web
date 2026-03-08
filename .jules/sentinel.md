@@ -1,0 +1,4 @@
+## 2024-05-14 - Global Security Headers in Vercel Deployment
+**Vulnerability:** Missing security headers (CSP, X-Frame-Options, etc.). By default, Vercel deployments do not have strict security headers applied, which could leave the application vulnerable to basic attacks like clickjacking and XSS.
+**Learning:** For Astro projects deployed on Vercel, global security headers can be applied via a `vercel.json` file in the root directory. This provides a simple, centralized way to add defense-in-depth across the entire application without needing to modify individual Astro pages or endpoints.
+**Prevention:** Always include a baseline `vercel.json` with security headers (like `X-Frame-Options`, `Strict-Transport-Security`, `X-XSS-Protection`, `X-Content-Type-Options`, and `Referrer-Policy`) when deploying static sites or Astro apps to Vercel to ensure defense-in-depth from the start.

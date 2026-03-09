@@ -1,0 +1,3 @@
+## 2024-05-14 - Optimize Script Execution and Improve Code Splitting in Astro Layouts
+**Learning:** In Astro, statically importing heavy third-party tracking libraries inside a component script causes them to be aggressively bundled and loaded alongside the initial client payload, even if their initialization depends on environment variables. This creates unnecessary render blocking and inflates the bundle size for users.
+**Action:** When tracking libraries like Statsig or Web Vitals are conditional (based on an environment variable or flag), wrap them in dynamic `import()` blocks. This splits the code, prevents render blocking, and defers loading until the condition is met, drastically improving initial load performance.

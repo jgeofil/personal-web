@@ -1,0 +1,4 @@
+## 2024-03-10 - Add Global Security Headers via Vercel Configuration
+**Vulnerability:** Missing security headers (CSP, X-Frame-Options, HSTS, etc.) on the deployed Astro application.
+**Learning:** For Astro projects deployed on Vercel, global HTTP headers aren't inherently managed by the Astro configuration alone but require a `vercel.json` file to enforce headers across all routes (`/(.*)`).
+**Prevention:** Always verify if a `vercel.json` or equivalent hosting configuration exists and ensure standard security headers (e.g., `X-Content-Type-Options`, `X-Frame-Options`, `X-XSS-Protection`, `Strict-Transport-Security`, `Referrer-Policy`) are applied globally to prevent various classes of attacks (like clickjacking and MIME-type sniffing).

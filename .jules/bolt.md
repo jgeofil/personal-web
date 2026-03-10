@@ -1,0 +1,3 @@
+## 2024-05-24 - Dynamic imports for non-critical third-party libraries
+**Learning:** In Astro layouts, static imports for large third-party libraries like Statsig analytics (e.g., `@statsig/js-client`, `@statsig/session-replay`, `@statsig/web-analytics`) block rendering and increase the initial payload significantly.
+**Action:** Use dynamic imports (`import()`) inside a conditional check (`if (statsigKey)`) to load these non-critical libraries. This allows code splitting, preventing them from blocking the initial page render.

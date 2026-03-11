@@ -1,0 +1,3 @@
+## 2024-05-14 - Use dynamic imports for conditional third-party scripts
+**Learning:** Statically importing heavy third-party libraries (like Statsig analytics) in Astro layout scripts forces their inclusion in the initial client bundle, even if their initialization is conditional. This bloats the initial payload and can block rendering.
+**Action:** Use dynamic imports (`import()`) for such libraries to enable code splitting. This ensures they are only downloaded when the condition is met, significantly reducing the initial client payload size.

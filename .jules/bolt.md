@@ -1,0 +1,3 @@
+## 2024-05-18 - Dynamically importing optional 3rd-party libs in Astro
+**Learning:** Statically importing third-party libraries (like web analytics or session replay tools) in Astro layouts forces these scripts to be included in the main bundle. This inflates the initial payload size and blocks rendering, even when the functionality isn't guaranteed to run (e.g. conditional on an API key being present).
+**Action:** Use dynamic `import()` for non-critical, conditionally loaded scripts within Astro component scripts. This utilizes Astro's built-in code-splitting, deferring the load of these libraries until they are actually needed and reducing the impact on Time To Interactive (TTI) and First Contentful Paint (FCP).

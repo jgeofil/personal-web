@@ -1,0 +1,3 @@
+## 2024-05-24 - Accessibility for Icon Links in Astro Components
+**Learning:** Purely icon-based links (like in SocialGrid) or links with purely decorative icons (like in LinkGrid) need to be explicitly managed for screen readers in Astro components. Specifically, `<img>` tags for decorative icons need `alt=""` and `aria-hidden="true"`, and the wrapping `<a>` elements for icon-only links need a dynamic `aria-label`.
+**Action:** When creating or modifying Astro components with icon links or decorative images, ensure `<a>` elements have `aria-label` attributes if they only contain an icon, and ensure purely visual `<img>` tags use `alt=""` and `aria-hidden="true"`.

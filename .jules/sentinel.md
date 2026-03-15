@@ -1,0 +1,4 @@
+## 2026-03-15 - Missing Default Security Headers in Vercel Deployment
+**Vulnerability:** The Astro application deployed to Vercel was missing standard HTTP security headers such as `X-Frame-Options`, `X-Content-Type-Options`, `X-XSS-Protection`, and `Strict-Transport-Security`.
+**Learning:** Vercel deployments do not automatically add global security defenses/headers to routes by default. They must be explicitly configured.
+**Prevention:** Always include a `vercel.json` file in the root directory configured with standard security headers under the `headers` key matching the `/(.*)` route when deploying Astro apps (or any app) to Vercel.

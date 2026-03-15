@@ -1,0 +1,3 @@
+## 2024-05-18 - Improve accessibility of icon links
+**Learning:** Purely decorative images or icons used alongside or inside links need to be hidden from screen readers using `alt="" aria-hidden="true"`, otherwise they create unnecessary noise. If an icon is the *only* content of a link, the link must have a descriptive `aria-label` so its purpose is clear to screen reader users.
+**Action:** When adding or modifying links with icons, ensure that screen reader context is correctly provided via text or `aria-label` on the anchor tag, and that decorative icons are appropriately hidden.

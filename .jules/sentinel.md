@@ -1,0 +1,4 @@
+## 2024-05-18 - Missing global security headers for Vercel deployment
+**Vulnerability:** The project is deployed on Vercel, but Vercel lacks default global security headers such as `X-Frame-Options`, `Strict-Transport-Security`, `X-XSS-Protection`, etc. This could potentially allow attacks like clickjacking, XSS, and downgrade attacks.
+**Learning:** Default Vercel deployments do not automatically add essential security headers for all routes. We must explicitly define them via a `vercel.json` configuration file.
+**Prevention:** Always verify and include a `vercel.json` with recommended global security headers when deploying Astro/React applications to Vercel, ensuring all routes (e.g., `/(.*)`) are protected.

@@ -1,0 +1,3 @@
+## 2024-05-14 - Improve accessibility for icon links and decorative images
+**Learning:** Icon-only links in Astro components (e.g., SocialGrid) lack screen reader context, and decorative images (e.g., LinkGrid) can add noise if not hidden from assistive technologies.
+**Action:** Always add dynamic `aria-label` attributes to icon-only links using data sources like `cv.json` (e.g., `item.title`), and explicitly hide purely decorative images accompanying links using `alt=""` and `aria-hidden="true"`.

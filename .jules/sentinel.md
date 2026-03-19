@@ -1,0 +1,4 @@
+## 2026-03-19 - Sensitive Data Exposure in Analytics URLs
+**Vulnerability:** The application was sending the full `location.href` to Vercel Analytics, which could unintentionally expose sensitive data (like PII or authentication tokens) present in query parameters or hash fragments.
+**Learning:** Analytics reporting endpoints must sanitize URLs to prevent leaking sensitive information that might be part of a user's current session state or redirect parameters.
+**Prevention:** Always use `location.origin + location.pathname` instead of `location.href` or `location.search` when reporting page views or interactions to third-party analytics services, ensuring that query strings and hash fragments are explicitly stripped out.

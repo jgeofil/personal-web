@@ -1,0 +1,3 @@
+## 2024-05-24 - Dynamic imports for Astro layouts
+**Learning:** Astro does not split chunks correctly for statically imported scripts conditionally evaluated via environment variables. Statically imported third-party libraries (like Statsig) block rendering and increase initial client payload size even if they are behind a conditional block.
+**Action:** Use dynamic imports (e.g., `Promise.all([import()])`) for non-critical or conditional third-party libraries in Astro layouts to enable code splitting, prevent render blocking, and reduce the initial client payload size.

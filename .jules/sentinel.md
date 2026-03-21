@@ -1,0 +1,4 @@
+## 2024-05-24 - Missing Global Security Headers in Vercel Deployment
+**Vulnerability:** The application is missing essential HTTP security headers (like `X-Frame-Options`, `Strict-Transport-Security`, `X-XSS-Protection`) in its Vercel deployment, which could leave it open to clickjacking, man-in-the-middle attacks, and XSS.
+**Learning:** Vercel deployments do not add robust HTTP security headers by default. They must be explicitly configured.
+**Prevention:** Include a `vercel.json` file in the root directory configured with `headers` explicitly mapped to the `/(.*)` route using the `source` property.

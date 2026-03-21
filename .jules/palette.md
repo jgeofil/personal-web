@@ -1,0 +1,3 @@
+## 2024-03-21 - Astro Component Accessibility for Icon Links and Decorative Images
+**Learning:** Icon-only links in Astro components mapping over structured data need dynamic `aria-label` attributes to ensure screen reader accessibility. Purely decorative images accompanying links must be explicitly hidden from assistive technologies using `alt=""` and `aria-hidden="true"`.
+**Action:** When creating Astro components that render links with icons (especially from JSON data), always use the item's title or description for the `aria-label` on the anchor tag. For purely decorative images that provide no additional semantic meaning, add `alt=""` and `aria-hidden="true"`.

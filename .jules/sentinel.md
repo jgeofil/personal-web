@@ -1,4 +1,4 @@
-## 2024-05-24 - Missing Global Security Headers in Vercel Deployment
-**Vulnerability:** The application is missing essential HTTP security headers (like `X-Frame-Options`, `Strict-Transport-Security`, `X-XSS-Protection`) in its Vercel deployment, which could leave it open to clickjacking, man-in-the-middle attacks, and XSS.
-**Learning:** Vercel deployments do not add robust HTTP security headers by default. They must be explicitly configured.
-**Prevention:** Include a `vercel.json` file in the root directory configured with `headers` explicitly mapped to the `/(.*)` route using the `source` property.
+## 2024-05-24 - Sensitive Data Exposure in Analytics Tracking
+**Vulnerability:** The vitals reporting script (`src/lib/vitals.js`) uses `location.href` to report the current URL, which can inadvertently leak sensitive tokens (like password reset links) or PII stored in query string parameters or hashes.
+**Learning:** Third-party analytics and performance reporting scripts should never blindly ingest the full URL.
+**Prevention:** Sanitize tracking URLs by using `location.origin + location.pathname` to ensure query parameters and hashes are stripped out before sending the payload.

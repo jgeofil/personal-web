@@ -1,0 +1,3 @@
+## 2024-05-24 - Dynamically Import Analytics Libraries in Astro Layouts
+**Learning:** Astro does not correctly split chunks for statically imported scripts that are conditionally evaluated via environment variables. This results in the entire analytics package being included in the main bundle.
+**Action:** Use dynamic imports (e.g., `Promise.all([import()])`) for non-critical or conditional third-party libraries (like Statsig analytics) in Astro layouts to enable code splitting, prevent render blocking, and reduce the initial client payload size.

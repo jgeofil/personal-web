@@ -1,0 +1,3 @@
+## 2024-05-18 - Improve accessibility of icon links in grids
+**Learning:** Purely decorative icons must be hidden from screen readers using `alt=""` and `aria-hidden="true"`, and icon-only links must have `aria-label` attributes to provide screen readers with an accessible name.
+**Action:** Always verify that purely decorative images are hidden from assistive technologies and icon-only links have an accessible name using `aria-label`.

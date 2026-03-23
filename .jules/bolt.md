@@ -1,0 +1,3 @@
+## 2026-03-23 - Astro chunk splitting for conditionally evaluated scripts
+**Learning:** Astro does not correctly split chunks for statically imported scripts that are conditionally evaluated using environment variables. This results in the entire conditional script bundle (like Statsig analytics) being loaded synchronously, blocking rendering.
+**Action:** Always use dynamic imports (e.g., `Promise.all([import(...)])`) for non-critical, conditionally evaluated third-party libraries within Astro layouts to enable proper code splitting and reduce initial client payload size.

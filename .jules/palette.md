@@ -1,0 +1,3 @@
+## 2024-05-18 - Icon-only links and decorative images in Astro
+**Learning:** Icon-only links generated in Astro components mapping over JSON data (e.g., `SocialGrid`) require dynamic `aria-label` attributes using properties like `item.title` to be accessible. Purely decorative images accompanying these links (e.g., in `LinkGrid`) must be explicitly hidden from assistive technologies.
+**Action:** When creating or modifying Astro components with icon links or decorative images, ensure `aria-label` is dynamically added from the data source for links, and use `alt="" aria-hidden="true"` to hide decorative images.

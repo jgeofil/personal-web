@@ -1,0 +1,4 @@
+## 2024-05-24 - Prevent sensitive data exposure in analytics URLs
+**Vulnerability:** The web vitals reporting functionality (`src/lib/vitals.js`) transmitted the full `location.href` to the analytics endpoint, which could expose sensitive data (like tokens, PII, or internal IDs) present in query parameters or URL hashes.
+**Learning:** Even internal analytics tools should not receive full URLs by default. Query parameters and hashes are common vectors for sensitive data leakage.
+**Prevention:** Sanitize URLs client-side before sending to analytics or tracking systems by using `location.origin + location.pathname` to strip query parameters and hashes.

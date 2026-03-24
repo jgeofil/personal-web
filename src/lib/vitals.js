@@ -25,7 +25,8 @@ export function sendToAnalytics(metric, options) {
 		dsn: options.analyticsId,
 		id: metric.id,
 		page,
-		href: location.href,
+		// SECURITY: Sanitize the URL to prevent leaking sensitive data (PII, tokens) via query string or hash.
+		href: location.origin + location.pathname,
 		event_name: metric.name,
 		value: metric.value.toString(),
 		speed: getConnectionSpeed(),

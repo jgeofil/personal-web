@@ -1,0 +1,4 @@
+## 2024-03-24 - Prevent sensitive data exposure in analytics tracking
+**Vulnerability:** The application was using `location.href` to track analytics data, which includes the query string and hash, potentially exposing sensitive information (PII, tokens, etc.) directly in URLs to third-party analytics services.
+**Learning:** Sending full URLs to external services can inadvertently leak sensitive data, especially on pages that process forms or authentications using query parameters.
+**Prevention:** Sanitize URLs by using `location.origin + location.pathname` instead of `location.href` to ensure query parameters and hashes are stripped before being sent.

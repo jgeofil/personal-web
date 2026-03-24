@@ -1,0 +1,3 @@
+## 2024-05-30 - Accessible Icon-Only Links and Decorative Images
+**Learning:** Icon-only links in Astro components (e.g., SocialGrid) must include dynamic `aria-label` attributes to ensure screen reader accessibility. Purely decorative images accompanying links (e.g., LinkGrid) must be explicitly hidden from assistive technologies using `alt=""` and `aria-hidden="true"`.
+**Action:** When creating or modifying icon-based components, map relevant data properties (like `item.title`) to the anchor tag's `aria-label`, and strictly hide non-informative images with both `alt=""` and `aria-hidden="true"`.

@@ -1,0 +1,3 @@
+## 2024-05-24 - Dynamic imports in Astro conditionally rendered layouts
+**Learning:** Astro doesn't correctly split chunks for statically imported scripts evaluated conditionally via environment variables inside a `<script>` block. This results in heavy analytics bundles (like Statsig) being included in the main payload, blocking initial rendering for all users, even those without an analytics API key.
+**Action:** Use dynamic imports (e.g., `Promise.all([import(...)])`) for non-critical or conditional third-party libraries within Astro `<script>` blocks to enforce code splitting and reduce initial main bundle payload size.

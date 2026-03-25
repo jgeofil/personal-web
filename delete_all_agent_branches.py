@@ -8,7 +8,8 @@ with open("prs.json", "r") as f:
 branches_to_delete = set()
 for pr in prs:
     title = pr["title"].lower()
-    if "bolt:" in title or "palette:" in title or "sentinel:" in title or "[bolt]" in title or "[palette]" in title or "[sentinel]" in title:
+    agent_keywords = ["bolt:", "palette:", "sentinel:", "[bolt]", "[palette]", "[sentinel]"]
+    if any(keyword in title for keyword in agent_keywords):
         branch = pr.get("branch")
         if branch:
             branches_to_delete.add(branch)

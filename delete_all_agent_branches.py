@@ -19,7 +19,8 @@ try:
     output = subprocess.check_output(["git", "branch", "-r"], text=True)
     for line in output.splitlines():
         line = line.strip()
-        if "origin/bolt" in line or "origin/palette" in line or "origin/sentinel" in line:
+        agent_prefixes = ["origin/bolt", "origin/palette", "origin/sentinel"]
+        if any(prefix in line for prefix in agent_prefixes):
             branch_name = line.replace("origin/", "")
             if not "HEAD" in branch_name:
                 branches_to_delete.add(branch_name)

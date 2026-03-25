@@ -26,6 +26,10 @@ const { items } = Astro.props;
 	img {
 		width: 48px;
 		height: 48px;
+		transition: transform 0.2s ease-in-out;
+	}
 
+	a:is(:hover, :focus-visible) img {
+		transform: scale(1.1);
 	}
 </style>

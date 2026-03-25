@@ -1,4 +1,4 @@
-## 2024-05-24 - Missing Default Security Headers in Vercel Deployment
-**Vulnerability:** The Astro application deployed to Vercel was missing standard HTTP security headers such as `X-Frame-Options`, `X-Content-Type-Options`, `X-XSS-Protection`, and `Strict-Transport-Security`.
-**Learning:** Vercel deployments do not automatically add global security defenses/headers to routes by default. They must be explicitly configured.
-**Prevention:** Always include a `vercel.json` file in the root directory configured with standard security headers under the `headers` key matching the `/(.*)` route when deploying Astro apps (or any app) to Vercel.
+## 2026-03-24 - Add rel="noopener noreferrer" and sanitize URLs
+**Vulnerability:** External links created from dynamic, user-controlled data can lead to Cross-Site Scripting (XSS) via `javascript:` URIs, and missing `rel="noopener noreferrer"` causes reverse tabnabbing vulnerability.
+**Learning:** Components mapping dynamic data from `src/data/cv.json` to link attributes are required to sanitize URLs using the `sanitizeUrl` utility. External links should always use `target="_blank" rel="noopener noreferrer"`.
+**Prevention:** Implement and use a `sanitizeUrl` utility. Ensure new external link templates explicitly define `target="_blank" rel="noopener noreferrer"`.

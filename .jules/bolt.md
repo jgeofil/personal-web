@@ -1,3 +1,3 @@
-## 2024-05-24 - Dynamic imports in Astro components
-**Learning:** Astro does not correctly split chunks for statically imported scripts conditionally evaluated via environment variables. For non-critical or conditional third-party libraries (like analytics) in Astro layouts, use dynamic imports (`import()`) to enable code splitting, prevent render blocking, and reduce the initial client payload size.
-**Action:** Always prefer dynamic `import()` inside `if` blocks for optional scripts rather than top-level static imports in Astro components.
+## 2026-03-24 - Performance optimizations
+**Learning:** Standard performance optimizations for images in Astro components include adding `loading="lazy"`, `width`, and `height` attributes to `<img>` tags.
+**Action:** Consistently add `loading="lazy"` to below-the-fold or grid images to improve LCP and initial page load times.

@@ -1,10 +1,12 @@
 ---
+import { sanitizeUrl } from "../lib/security.js";
 const { items } = Astro.props;
 ---
 
 <ul class="list-grid">
 	{items.map((item, index) => (
-		<li><a href={item.url} aria-label={item.title}><img src={item.icon_url ? item.icon_url : `https://cdn.simpleicons.org/${item.icon}/${item.color}`} alt="" aria-hidden="true" /></a></li>
+		<li><a href={sanitizeUrl(item.url)} target="_blank" rel="noopener noreferrer" aria-label={item.title}><!-- Optimize: lazy loading images improves LCP -->
+			<img src={item.icon_url ? item.icon_url : `https://cdn.simpleicons.org/${item.icon}/${item.color}`} alt="" aria-hidden="true" loading="lazy" /></a></li>
 	))}
 </ul>
 <style>

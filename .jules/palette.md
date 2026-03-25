@@ -1,3 +1,3 @@
-## 2024-03-20 - Missing ARIA labels and empty alt tags for icon-only links
-**Learning:** In Astro components mapping over JSON data (like `SocialGrid`), icon-only links lacked `aria-label` attributes, making them inaccessible to screen readers. Furthermore, decorative images (icons) inside and outside of links did not use `alt=""` and `aria-hidden="true"`, causing screen readers to potentially announce redundant or unhelpful information.
-**Action:** Always ensure that purely decorative images use `alt="" aria-hidden="true"`. For links that do not contain visible text (only icons), explicitly provide an `aria-label` attribute (e.g., using `item.title` from the data source).
+## 2024-05-14 - Icon-only links and decorative images in Astro
+**Learning:** Purely decorative images accompanying links (e.g., LinkGrid) must be explicitly hidden from assistive technologies using `alt=""` and `aria-hidden="true"`. Icon-only links in Astro components (e.g., SocialGrid) must include dynamic `aria-label` attributes to ensure they are properly announced by screen readers.
+**Action:** Always verify that links have descriptive text or ARIA labels, and that decorative images accompanying text are hidden from screen readers.

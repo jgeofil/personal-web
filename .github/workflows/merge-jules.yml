@@ -8,7 +8,7 @@ on:
 jobs:
   merge-palette:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' || github.event.label.name == 'palette' }}
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.label.name == 'palette' }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -20,7 +20,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
   merge-sentinel:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' || github.event.label.name == 'sentinel' }}
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.label.name == 'sentinel' }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -32,7 +32,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
   merge-bolt:
       runs-on: ubuntu-latest
-      if: ${{ github.event_name == 'push' || github.event.label.name == 'bolt' }}
+      if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.label.name == 'bolt' }}
       steps:
         - uses: actions/checkout@v2
           with:

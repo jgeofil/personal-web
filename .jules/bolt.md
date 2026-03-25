@@ -1,3 +1,3 @@
-## 2024-05-24 - Image Attribute Optimization
-**Learning:** Missing `loading="lazy"`, `width`, and `height` attributes on external images can lead to unoptimized loading and Cumulative Layout Shifts (CLS), impacting Web Vitals.
-**Action:** Always include lazy loading and explicit dimensions (e.g., width="48" height="48") on images mapping dynamic content to ensure stable layouts and improved LCP.
+## 2026-03-24 - Performance optimizations
+**Learning:** Standard performance optimizations for images in Astro components include adding `loading="lazy"`, `width`, and `height` attributes to `<img>` tags.
+**Action:** Consistently add `loading="lazy"` to below-the-fold or grid images to improve LCP and initial page load times.

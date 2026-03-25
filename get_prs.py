@@ -28,5 +28,5 @@ try:
         with open("prs.json", "w") as f:
             json.dump(prs, f, indent=2)
         print(f"Saved {len(prs)} PRs to prs.json")
-except Exception as e:
+except (urllib.error.URLError, json.JSONDecodeError) as e:
     print(f"Error: {e}")

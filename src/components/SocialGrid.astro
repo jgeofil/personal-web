@@ -1,15 +1,16 @@
 ---
 import { sanitizeUrl } from "../lib/security.js";
 const { items } = Astro.props;
+const ICON_SIZE = 48;
 ---
 
 <ul class="list-grid">
 	{items.map((item, index) => (
-		<li><a href={sanitizeUrl(item.url)} target="_blank" rel="noopener noreferrer" aria-label={item.title}><!-- Optimize: lazy loading images improves LCP -->
-			<img src={item.icon_url ? item.icon_url : `https://cdn.simpleicons.org/${item.icon}/${item.color}`} alt="" aria-hidden="true" loading="lazy" /></a></li>
+		<li><a href={sanitizeUrl(item.url)} target="_blank" rel="noopener noreferrer" aria-label={item.title}><!-- Optimize: lazy loading images improves LCP. Explicit width/height prevents Cumulative Layout Shift (CLS) -->
+			<img src={item.icon_url ? item.icon_url : `https://cdn.simpleicons.org/${item.icon}/${item.color}`} alt="" aria-hidden="true" loading="lazy" width={ICON_SIZE} height={ICON_SIZE} /></a></li>
 	))}
 </ul>
-<style>
+<style define:vars={{ iconSize: `${ICON_SIZE}px` }}>
 	ul {
 		list-style: none;
 		
@@ -24,8 +25,8 @@ const { items } = Astro.props;
 	}
 
 	img {
-		width: 48px;
-		height: 48px;
+		width: var(--iconSize);
+		height: var(--iconSize);
 		transition: transform 0.2s ease-in-out;
 		will-change: transform;
 	}

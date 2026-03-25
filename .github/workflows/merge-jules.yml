@@ -1,0 +1,44 @@
+name: Merge Jules
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, labeled, unlabeled]
+jobs:
+  merge-palette:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.label.name == 'palette' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: bobvanderlinden/combine-pull-requests@v4
+        with:
+          label: palette
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+  merge-sentinel:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.label.name == 'sentinel' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: bobvanderlinden/combine-pull-requests@v4
+        with:
+          label: sentinel
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+  merge-bolt:
+      runs-on: ubuntu-latest
+      if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.label.name == 'bolt' }}
+      steps:
+        - uses: actions/checkout@v4
+          with:
+            ref: main
+            fetch-depth: 0
+        - uses: bobvanderlinden/combine-pull-requests@v4
+          with:
+            label: bolt
+            repo-token: ${{ secrets.GITHUB_TOKEN }}

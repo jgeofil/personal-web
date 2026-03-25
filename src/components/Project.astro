@@ -1,10 +1,11 @@
 ---
+import { sanitizeUrl } from "../lib/security.js";
 const { row } = Astro.props;
 ---
 
 <tr>
 	<td class="date-col">{row.date}</td>
-	<td><a href={row.url}><b>{row.title}</b></a> {row.description}</td>
+	<td><a href={sanitizeUrl(row.url)} target="_blank" rel="noopener noreferrer"><b>{row.title}</b></a> {row.description}</td>
 </tr>
 <style>
 	table {

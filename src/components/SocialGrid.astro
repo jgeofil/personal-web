@@ -27,6 +27,11 @@ const ICON_SIZE = 48;
 	img {
 		width: var(--iconSize);
 		height: var(--iconSize);
+		transition: transform 0.2s ease-in-out;
+		will-change: transform;
+	}
 
+	a:is(:hover, :focus-visible) img {
+		transform: scale(1.1);
 	}
 </style>

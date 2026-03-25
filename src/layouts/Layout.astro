@@ -42,13 +42,17 @@ const { title, description } = Astro.props as Props;
 
             if (analyticsId) {
                 // Optimize: Use dynamic import for webVitals to prevent render blocking
-                import("../lib/vitals.js").then(({ webVitals }) => {
-                    webVitals({
-                        path: location.pathname,
-                        params: location.search,
-                        analyticsId,
+                import("../lib/vitals.js")
+                    .then(({ webVitals }) => {
+                        webVitals({
+                            path: location.pathname,
+                            params: location.search,
+                            analyticsId,
+                        });
+                    })
+                    .catch((err) => {
+                        console.error("[Web Vitals] dynamic import failed", err);
                     });
-                });
             }
 
             if (statsigKey) {
@@ -72,6 +76,9 @@ const { title, description } = Astro.props as Props;
 
                     // Initialize
                     statsig.initializeAsync().catch(console.error);
+                })
+                .catch((err) => {
+                    console.error("[Statsig] dynamic import failed", err);
                 });
             }
         </script>
@@ -112,6 +119,11 @@ const { title, description } = Astro.props as Props;
 
     :global(a) {
         color: var(--color-link);
+    }
+
+    :global(a:focus-visible) {
+        outline: 2px solid var(--color-link);
+        outline-offset: 2px;
     }
 
     body {

@@ -12,7 +12,7 @@ const { href, title, body } = Astro.props as Props;
 	<a href={href}>
 		<h2>
 			{title}
-			<span>&rarr;</span>
+			<span aria-hidden="true">&rarr;</span>
 		</h2>
 		<p>
 			{body}

@@ -114,6 +114,11 @@ const { title, description } = Astro.props as Props;
         color: var(--color-link);
     }
 
+    :global(a:focus-visible) {
+        outline: 2px solid var(--color-link);
+        outline-offset: 2px;
+    }
+
     body {
         margin: 0;
     }

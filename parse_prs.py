@@ -11,7 +11,6 @@ palette_prs = []
 sentinel_prs = []
 
 for pr in prs:
-    title = pr["title"].lower()
     if "bolt" in title:
         bolt_prs.append(pr)
     elif "palette" in title:

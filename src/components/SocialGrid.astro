@@ -1,10 +1,12 @@
 ---
+import { sanitizeUrl } from '../lib/security';
+
 const { items } = Astro.props;
 ---
 
 <ul class="list-grid">
 	{items.map((item, index) => (
-		<li><a href={item.url}><img src={item.icon_url ? item.icon_url : `https://cdn.simpleicons.org/${item.icon}/${item.color}`} /></a></li>
+		<li><a href={sanitizeUrl(item.url)}><img src={item.icon_url ? item.icon_url : `https://cdn.simpleicons.org/${item.icon}/${item.color}`} /></a></li>
 	))}
 </ul>
 <style>

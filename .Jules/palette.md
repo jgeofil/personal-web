@@ -1,3 +1,0 @@
-## 2024-05-24 - Accessibility of Icon-Only Links and Decorative Images in Astro Components
-**Learning:** Icon-only links and purely decorative images in Astro components need explicit ARIA attributes to be accessible. Screen readers may otherwise announce the raw URL or image source.
-**Action:** Always include a dynamic `aria-label` attribute on icon-only links (e.g., `aria-label={item.title}`). For accompanying decorative images, explicitly hide them from assistive technologies using `alt=""` and `aria-hidden="true"`.

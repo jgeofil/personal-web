@@ -81,6 +81,18 @@ const { title, description } = Astro.props as Props;
                     console.error("[Statsig] dynamic import failed", err);
                 });
             }
+
+            // Optimize: Use dynamic import for PostHog to enable code splitting and reduce initial client payload size
+            import("posthog-js")
+                .then((posthog) => {
+                    posthog.default.init('phc_2hPFUpij52BfVfbntuzOzo8UGqWwwzRPQcgsIjeK6Z5', {
+                        api_host: 'https://t.mlread.me',
+                        defaults: '2026-01-30'
+                    });
+                })
+                .catch((err) => {
+                    console.error("[PostHog] dynamic import failed", err);
+                });
         </script>
     </head>
     <body>

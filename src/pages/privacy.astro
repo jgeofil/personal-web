@@ -1,18 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
 export const prerender = true;
+const IFRAME_HEIGHT = '800px';
 ---
 
 <Layout title="Privacy Policy" description="Privacy Policy">
 	<main>
-		<iframe src="https://docs.google.com/document/d/e/2PACX-1vS_xYTgSEvcNVvb7NH6yYZ4GeAwKrQm4nMp4YY3z58Ozl3OEl6_XGT1fp3mcRCyqONCHoy7ITmuk9DZ/pub?embedded=true" width="100%" height="800px" style="border:none;"></iframe>
+		<iframe src="https://docs.google.com/document/d/e/2PACX-1vS_xYTgSEvcNVvb7NH6yYZ4GeAwKrQm4nMp4YY3z58Ozl3OEl6_XGT1fp3mcRCyqONCHoy7ITmuk9DZ/pub?embedded=true" height={IFRAME_HEIGHT}></iframe>
 	</main>
 </Layout>
 
-<style>
+<style define:vars={{ iframeHeight: IFRAME_HEIGHT }}>
 	main {
 		margin: auto;
 		padding: 1em;
 		max-width: 60ch;
+	}
+	iframe {
+		width: 100%;
+		height: var(--iframeHeight);
+		border: none;
 	}
 </style>

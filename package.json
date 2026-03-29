@@ -10,7 +10,7 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/vercel": "^9.0.4",
+		"@astrojs/vercel": "^10.0.3",
 		"@statsig/js-client": "^3.31.2",
 		"@statsig/session-replay": "^3.31.2",
 		"@statsig/web-analytics": "^3.31.2",

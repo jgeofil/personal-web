@@ -5,6 +5,7 @@ import os
 url = "https://api.github.com/repos/jgeofil/personal-web/pulls/120/comments"
 headers = {
     "Accept": "application/vnd.github.v3+json",
+    "Authorization": f"Bearer {os.getenv('GITHUB_TOKEN')}",
 }
 
 req = urllib.request.Request(url, headers=headers)

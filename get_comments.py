@@ -19,5 +19,5 @@ try:
             print(f"Diff: {c.get('diff_hunk')}")
             print(f"Body: {c.get('body')}")
             print("-" * 40)
-except Exception as e:
+except (urllib.error.HTTPError, urllib.error.URLError) as e:
     print(f"Error: {e}")

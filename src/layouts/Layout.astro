@@ -42,13 +42,17 @@ const { title, description } = Astro.props as Props;
 
             if (analyticsId) {
                 // Optimize: Use dynamic import for webVitals to prevent render blocking
-                import("../lib/vitals.js").then(({ webVitals }) => {
-                    webVitals({
-                        path: location.pathname,
-                        params: location.search,
-                        analyticsId,
+                import("../lib/vitals.js")
+                    .then(({ webVitals }) => {
+                        webVitals({
+                            path: location.pathname,
+                            params: location.search,
+                            analyticsId,
+                        });
+                    })
+                    .catch((err) => {
+                        console.error("[Web Vitals] dynamic import failed", err);
                     });
-                });
             }
 
             if (statsigKey) {
@@ -72,8 +76,23 @@ const { title, description } = Astro.props as Props;
 
                     // Initialize
                     statsig.initializeAsync().catch(console.error);
+                })
+                .catch((err) => {
+                    console.error("[Statsig] dynamic import failed", err);
                 });
             }
+
+            // Optimize: Use dynamic import for PostHog to enable code splitting and reduce initial client payload size
+            import("posthog-js")
+                .then((posthog) => {
+                    posthog.default.init('phc_2hPFUpij52BfVfbntuzOzo8UGqWwwzRPQcgsIjeK6Z5', {
+                        api_host: 'https://t.mlread.me',
+                        defaults: '2026-01-30'
+                    });
+                })
+                .catch((err) => {
+                    console.error("[PostHog] dynamic import failed", err);
+                });
         </script>
     </head>
     <body>
@@ -88,6 +107,9 @@ const { title, description } = Astro.props as Props;
         <!-- End Google Tag Manager (noscript) -->
         <slot />
         <SpeedInsights />
+        <footer>
+            <a href="/privacy">Privacy Policy</a>
+        </footer>
     </body>
 </html>
 <style>
@@ -114,6 +136,11 @@ const { title, description } = Astro.props as Props;
         color: var(--color-link);
     }
 
+    :global(a:focus-visible) {
+        outline: 2px solid var(--color-link);
+        outline-offset: 2px;
+    }
+
     body {
         margin: 0;
     }
@@ -136,5 +163,13 @@ const { title, description } = Astro.props as Props;
             Bitstream Vera Sans Mono,
             Courier New,
             monospace;
+    }
+
+    footer {
+        text-align: center;
+        padding: 2rem 0;
+        margin-top: 2rem;
+        border-top: 1px solid var(--color-border);
+        font-size: var(--font-size-sm);
     }
 </style>

@@ -1,4 +1,4 @@
-## 2024-05-24 - Missing Default Security Headers in Vercel Deployment
-**Vulnerability:** The Astro application deployed to Vercel was missing standard HTTP security headers such as `X-Frame-Options`, `X-Content-Type-Options`, `X-XSS-Protection`, and `Strict-Transport-Security`.
-**Learning:** Vercel deployments do not automatically add global security defenses/headers to routes by default. They must be explicitly configured.
-**Prevention:** Always include a `vercel.json` file in the root directory configured with standard security headers under the `headers` key matching the `/(.*)` route when deploying Astro apps (or any app) to Vercel.
+## 2026-03-25 - Prevent Sensitive Data Exposure in Analytics URLs
+**Vulnerability:** The web vitals reporting logic in `src/lib/vitals.js` was reading the raw `location.href` value and directly appending it to the analytics payload sent to Vercel Analytics. This raw `href` could contain sensitive information like query parameters or URL fragment hashes.
+**Learning:** Sending unsanitized URLs directly to external analytics platforms exposes Personally Identifiable Information (PII) or sensitive tokens (e.g., reset tokens, auth tokens) implicitly passed by tracking codes or backend services.
+**Prevention:** In analytics endpoints, avoid tracking `location.href` directly. Strip query parameters and hashes from the request payload by logging only `location.origin + location.pathname` to ensure strict analytics hygiene.

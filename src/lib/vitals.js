@@ -16,10 +16,16 @@ function getConnectionSpeed() {
  * @param {{ params: { [s: string]: any; } | ArrayLike<any>; path: string; analyticsId: string; debug: boolean; }} options
  */
 export function sendToAnalytics(metric, options) {
-	const page = Object.entries(options.params).reduce(
-		(acc, [key, value]) => acc.replace(value, `[${key}]`),
-		options.path
-	);
+	const params = options.params;
+	let page = options.path;
+
+	if (typeof params === "object" && params !== null) {
+		const keys = Object.keys(params);
+		for (let i = 0; i < keys.length; i++) {
+			const key = keys[i];
+			page = page.replace(params[key], `[${key}]`);
+		}
+	}
 
 	const body = {
 		dsn: options.analyticsId,

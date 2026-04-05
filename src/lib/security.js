@@ -1,31 +1,30 @@
 export function sanitizeUrl(url) {
-	if (typeof url !== "string" || !url.trim()) {
+	if (typeof url !== "string") {
 		return "#";
 	}
 
-	// Prevent XSS bypass via whitespace/control characters in protocols like javascript:
-	const normalizedUrl = url.replace(/[\x00-\x20]/g, "").toLowerCase();
+	// Remove control characters and any characters that browsers may ignore
+	// but could be used for obfuscation (e.g. \x00-\x1F, \x7F-\x9F)
+	const sanitized = url.replace(/[\x00-\x1F\x7F-\x9F]/g, "").trim();
+
+	if (!sanitized) {
+		return "#";
+	}
+
+	// Remove internal whitespace and check for common obfuscation like &colon;
+	const lowerUrl = sanitized
+		.toLowerCase()
+		.replace(/\s+/g, "")
+		.replace(/&colon;/g, ":");
+
 	if (
-		normalizedUrl.startsWith("javascript:") ||
-		normalizedUrl.startsWith("data:") ||
-		normalizedUrl.startsWith("vbscript:")
+		lowerUrl.startsWith("javascript:") ||
+		lowerUrl.startsWith("data:") ||
+		lowerUrl.startsWith("vbscript:") ||
+		lowerUrl.startsWith("blob:")
 	) {
 		return "#";
 	}
 
-	try {
-		const parsedUrl = new URL(url);
-		if (['https:', 'http:', 'mailto:'].includes(parsedUrl.protocol)) {
-			return url;
-		}
-		return '#';
-	} catch (e) {
-		// URL constructor throws for relative URLs.
-		// We can assume relative URLs are safe in this context.
-		// A simple check for relative URLs is that they don't contain `://`.
-		if (!url.includes('://')) {
-			return url;
-		}
-		return '#';
-	}
+	return url;
 }

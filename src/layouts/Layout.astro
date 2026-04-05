@@ -37,8 +37,9 @@ const { title, description } = Astro.props as Props;
         <meta name="description" content={description} />
         <title>{title}</title>
         <script>
-            let analyticsId = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;
-            let statsigKey = import.meta.env.PUBLIC_STATSIG_CLIENT_KEY;
+            const analyticsId = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;
+            const statsigKey = import.meta.env.PUBLIC_STATSIG_CLIENT_KEY;
+            const posthogKey = import.meta.env.PUBLIC_POSTHOG_API_KEY;
 
             if (analyticsId) {
                 // Optimize: Use dynamic import for webVitals to prevent render blocking
@@ -82,17 +83,19 @@ const { title, description } = Astro.props as Props;
                 });
             }
 
-            // Optimize: Use dynamic import for PostHog to enable code splitting and reduce initial client payload size
-            import("posthog-js")
-                .then((posthog) => {
-                    posthog.default.init('phc_2hPFUpij52BfVfbntuzOzo8UGqWwwzRPQcgsIjeK6Z5', {
-                        api_host: 'https://t.mlread.me',
-                        defaults: '2026-01-30'
+            if (posthogKey) {
+                // Optimize: Use dynamic import for PostHog to enable code splitting and reduce initial client payload size
+                import("posthog-js")
+                    .then((posthog) => {
+                        posthog.default.init(posthogKey, {
+                            api_host: 'https://t.mlread.me',
+                            defaults: '2026-01-30'
+                        });
+                    })
+                    .catch((err) => {
+                        console.error("[PostHog] dynamic import failed", err);
                     });
-                })
-                .catch((err) => {
-                    console.error("[PostHog] dynamic import failed", err);
-                });
+            }
         </script>
     </head>
     <body>

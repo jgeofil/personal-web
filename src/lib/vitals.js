@@ -13,6 +13,7 @@ function getConnectionSpeed() {
 
 /**
  * @param {import("web-vitals").Metric} metric
+ * @param {{ params: { [s: string]: any; } | ArrayLike<any>; path: string; analyticsId: string; debug: boolean; page?: string; }} options
  * @param {{ params: { [s: string]: any; } | ArrayLike<any>; path: string; analyticsId: string; }} options
  */
 export function sendToAnalytics(metric, options) {
@@ -47,18 +48,18 @@ export function sendToAnalytics(metric, options) {
  */
 export function webVitals(options) {
 	try {
-		// Calculate anonymized page path once to reduce string processing overhead
-		const page = Object.entries(options.params || {}).reduce(
+		const page = Object.entries(options.params).reduce(
 			(acc, [key, value]) => acc.replace(value, `[${key}]`),
 			options.path
 		);
-		const optimizedOptions = { ...options, page };
 
-		onFID((metric) => sendToAnalytics(metric, optimizedOptions));
-		onTTFB((metric) => sendToAnalytics(metric, optimizedOptions));
-		onLCP((metric) => sendToAnalytics(metric, optimizedOptions));
-		onCLS((metric) => sendToAnalytics(metric, optimizedOptions));
-		onFCP((metric) => sendToAnalytics(metric, optimizedOptions));
+		const updatedOptions = { ...options, page };
+
+		onFID((metric) => sendToAnalytics(metric, updatedOptions));
+		onTTFB((metric) => sendToAnalytics(metric, updatedOptions));
+		onLCP((metric) => sendToAnalytics(metric, updatedOptions));
+		onCLS((metric) => sendToAnalytics(metric, updatedOptions));
+		onFCP((metric) => sendToAnalytics(metric, updatedOptions));
 	} catch (err) {
 		console.error("[Web Vitals]", err);
 	}

@@ -7,7 +7,7 @@ const ICON_SIZE = 16;
 <ul class="list-grid">
 	{items.map((item, index) => (
 		<li><!-- Optimize: lazy loading images improves LCP. Explicit width/height prevents Cumulative Layout Shift (CLS) -->
-			<img src={`https://cdn.simpleicons.org/${item.icon}/${item.color}`} alt="" aria-hidden="true" loading="lazy" width={ICON_SIZE} height={ICON_SIZE} /><a href={sanitizeUrl(item.url)} target="_blank" rel="noopener noreferrer" aria-label={`${item.title} profile`}>{item.title}</a></li>
+			<img src={`https://cdn.simpleicons.org/${item.icon}/${item.color}`} alt="" aria-hidden="true" loading="lazy" width={ICON_SIZE} height={ICON_SIZE} /><a href={sanitizeUrl(item.url)} target="_blank" rel="noopener noreferrer">{item.title}</a></li>
 	))}
 </ul>
 <style define:vars={{ iconSize: `${ICON_SIZE}px` }}>

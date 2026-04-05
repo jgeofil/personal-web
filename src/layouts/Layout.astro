@@ -6,32 +6,25 @@ export interface Props {
 }
 
 const { title, description } = Astro.props as Props;
-const gtmId = import.meta.env.PUBLIC_GTM_ID;
 ---
 
 <!doctype html>
 <html lang="en">
     <head>
-        {
-            gtmId && (
-                <>
-                    <!-- Google Tag Manager -->
-                    <script define:vars={{ gtmId }}>
-                        (function (w, d, s, l, i) {
-                            w[l] = w[l] || [];
-                            w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-                            var f = d.getElementsByTagName(s)[0],
-                                j = d.createElement(s),
-                                dl = l != "dataLayer" ? "&l=" + l : "";
-                            j.async = true;
-                            j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-                            f.parentNode.insertBefore(j, f);
-                        })(window, document, "script", "dataLayer", gtmId);
-                    </script>
-                    <!-- End Google Tag Manager -->
-                </>
-            )
-        }
+        <!-- Google Tag Manager -->
+        <script is:inline>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-55MBXTJF");
+        </script>
+        <!-- End Google Tag Manager -->
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -43,20 +36,6 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID;
         <meta name="title" content={title} />
         <meta name="description" content={description} />
         <title>{title}</title>
-
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={Astro.url} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={new URL('/apple-touch-icon.png', Astro.url)} />
-
-        <!-- Twitter -->
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={Astro.url} />
-        <meta property="twitter:title" content={title} />
-        <meta property="twitter:description" content={description} />
-        <meta property="twitter:image" content={new URL('/apple-touch-icon.png', Astro.url)} />
         <script>
             let analyticsId = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;
             let statsigKey = import.meta.env.PUBLIC_STATSIG_CLIENT_KEY;
@@ -67,7 +46,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID;
                     .then(({ webVitals }) => {
                         webVitals({
                             path: location.pathname,
-                            params: Object.fromEntries(new URLSearchParams(location.search)),
+                            params: location.search,
                             analyticsId,
                         });
                     })
@@ -117,22 +96,15 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID;
         </script>
     </head>
     <body>
-        {
-            gtmId && (
-                <>
-                    <!-- Google Tag Manager (noscript) -->
-                    <noscript>
-                        <iframe
-                            src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
-                            height="0"
-                            width="0"
-                            style="display:none;visibility:hidden"
-                        />
-                    </noscript>
-                    <!-- End Google Tag Manager (noscript) -->
-                </>
-            )
-        }
+        <!-- Google Tag Manager (noscript) -->
+        <noscript
+            ><iframe
+                src="https://www.googletagmanager.com/ns.html?id=GTM-55MBXTJF"
+                height="0"
+                width="0"
+                style="display:none;visibility:hidden"></iframe></noscript
+        >
+        <!-- End Google Tag Manager (noscript) -->
         <slot />
         <SpeedInsights />
         <footer>

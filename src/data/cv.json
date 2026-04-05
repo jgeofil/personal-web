@@ -1,26 +1,26 @@
 {
     "links": [
         {
-            "title": "LinkedIn",
+            "title": "jgeofil",
             "url": "https://www.linkedin.com/in/jgeofil",
             "icon": "linkedin",
             "color": "0A66C2",
             "icon_url": "https://content.linkedin.com/content/dam/me/business/en-us/amp/xbu/linkedin-revised-brand-guidelines/in-logo/fg/brand-inlogo-download-fg-dsk-v01.png/jcr:content/renditions/brand-inlogo-download-fg-dsk-v01-2x.png"
         },
         {
-            "title": "Google Scholar",
+            "title": "Scholar",
             "url": "https://scholar.google.com/citations?user=x7V4H3YAAAAJ&hl=en",
             "icon": "googlescholar",
             "color": "4285F4"
         },
         {
-            "title": "GitHub",
+            "title": "jgeofil",
             "url": "https://github.com/jgeofil",
             "icon": "github",
             "color": "181717"
         },
         {
-            "title": "X",
+            "title": "jgeofil",
             "url": "https://twitter.com/jgeofil",
             "icon": "x",
             "color": "000"

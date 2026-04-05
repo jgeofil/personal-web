@@ -13,28 +13,20 @@ function getConnectionSpeed() {
 
 /**
  * @param {import("web-vitals").Metric} metric
- * @param {{ params: { [s: string]: any; } | ArrayLike<any>; path: string; analyticsId: string; debug: boolean; }} options
+ * @param {{ params: { [s: string]: any; } | ArrayLike<any>; path: string; analyticsId: string; debug: boolean; page?: string; }} options
+ * @param {{ params: { [s: string]: any; } | ArrayLike<any>; path: string; analyticsId: string; }} options
  */
 export function sendToAnalytics(metric, options) {
-	const page = Object.entries(options.params).reduce(
-		(acc, [key, value]) => acc.replace(value, `[${key}]`),
-		options.path
-	);
-
 	const body = {
 		dsn: options.analyticsId,
 		id: metric.id,
-		page,
+		page: options.page,
 		// 🛡️ Sanitize URL to prevent leaking sensitive data (PII, tokens) via query parameters/hash
 		href: location.origin + location.pathname,
 		event_name: metric.name,
 		value: metric.value.toString(),
 		speed: getConnectionSpeed(),
 	};
-
-	if (options.debug) {
-		console.log("[Web Vitals]", metric.name, JSON.stringify(body, null, 2));
-	}
 
 	const blob = new Blob([new URLSearchParams(body).toString()], {
 		// This content type is necessary for `sendBeacon`
@@ -56,11 +48,18 @@ export function sendToAnalytics(metric, options) {
  */
 export function webVitals(options) {
 	try {
-		onFID((metric) => sendToAnalytics(metric, options));
-		onTTFB((metric) => sendToAnalytics(metric, options));
-		onLCP((metric) => sendToAnalytics(metric, options));
-		onCLS((metric) => sendToAnalytics(metric, options));
-		onFCP((metric) => sendToAnalytics(metric, options));
+		const page = Object.entries(options.params).reduce(
+			(acc, [key, value]) => acc.replace(value, `[${key}]`),
+			options.path
+		);
+
+		const updatedOptions = { ...options, page };
+
+		onFID((metric) => sendToAnalytics(metric, updatedOptions));
+		onTTFB((metric) => sendToAnalytics(metric, updatedOptions));
+		onLCP((metric) => sendToAnalytics(metric, updatedOptions));
+		onCLS((metric) => sendToAnalytics(metric, updatedOptions));
+		onFCP((metric) => sendToAnalytics(metric, updatedOptions));
 	} catch (err) {
 		console.error("[Web Vitals]", err);
 	}

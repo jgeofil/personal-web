@@ -13,18 +13,13 @@ function getConnectionSpeed() {
 
 /**
  * @param {import("web-vitals").Metric} metric
- * @param {{ params: { [s: string]: any; } | ArrayLike<any>; path: string; analyticsId: string; debug: boolean; }} options
+ * @param {{ page: string; analyticsId: string; debug: boolean; }} options
  */
 export function sendToAnalytics(metric, options) {
-	const page = Object.entries(options.params).reduce(
-		(acc, [key, value]) => acc.replace(value, `[${key}]`),
-		options.path
-	);
-
 	const body = {
 		dsn: options.analyticsId,
 		id: metric.id,
-		page,
+		page: options.page,
 		// 🛡️ Sanitize URL to prevent leaking sensitive data (PII, tokens) via query parameters/hash
 		href: location.origin + location.pathname,
 		event_name: metric.name,
@@ -56,11 +51,18 @@ export function sendToAnalytics(metric, options) {
  */
 export function webVitals(options) {
 	try {
-		onFID((metric) => sendToAnalytics(metric, options));
-		onTTFB((metric) => sendToAnalytics(metric, options));
-		onLCP((metric) => sendToAnalytics(metric, options));
-		onCLS((metric) => sendToAnalytics(metric, options));
-		onFCP((metric) => sendToAnalytics(metric, options));
+		// Calculate anonymized page path once to reduce string processing overhead
+		const page = Object.entries(options.params || {}).reduce(
+			(acc, [key, value]) => acc.replace(value, `[${key}]`),
+			options.path
+		);
+		const optimizedOptions = { ...options, page };
+
+		onFID((metric) => sendToAnalytics(metric, optimizedOptions));
+		onTTFB((metric) => sendToAnalytics(metric, optimizedOptions));
+		onLCP((metric) => sendToAnalytics(metric, optimizedOptions));
+		onCLS((metric) => sendToAnalytics(metric, optimizedOptions));
+		onFCP((metric) => sendToAnalytics(metric, optimizedOptions));
 	} catch (err) {
 		console.error("[Web Vitals]", err);
 	}

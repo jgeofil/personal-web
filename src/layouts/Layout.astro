@@ -46,7 +46,7 @@ const { title, description } = Astro.props as Props;
                     .then(({ webVitals }) => {
                         webVitals({
                             path: location.pathname,
-                            params: location.search,
+                            params: {},
                             analyticsId,
                         });
                     })

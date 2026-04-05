@@ -4,7 +4,7 @@ const { items } = Astro.props;
 
 <ul class="list-grid">
 	{items.map((item, index) => (
-		<li><a href={item.url}><img src={item.icon_url ? item.icon_url : `https://cdn.simpleicons.org/${item.icon}/${item.color}`} /></a></li>
+		<li><a href={item.url}><img src={item.icon_url ? item.icon_url : `https://cdn.simpleicons.org/${item.icon}/${item.color}`} loading="lazy" width="48" height="48" alt={item.icon || 'social icon'} /></a></li>
 	))}
 </ul>
 <style>

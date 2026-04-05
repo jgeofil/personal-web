@@ -2,6 +2,17 @@ export function sanitizeUrl(url) {
 	if (typeof url !== "string" || !url.trim()) {
 		return "#";
 	}
+
+	// Prevent XSS bypass via whitespace/control characters in protocols like javascript:
+	const normalizedUrl = url.replace(/[\x00-\x20]/g, "").toLowerCase();
+	if (
+		normalizedUrl.startsWith("javascript:") ||
+		normalizedUrl.startsWith("data:") ||
+		normalizedUrl.startsWith("vbscript:")
+	) {
+		return "#";
+	}
+
 	try {
 		const parsedUrl = new URL(url);
 		if (['https:', 'http:', 'mailto:'].includes(parsedUrl.protocol)) {

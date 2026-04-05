@@ -18,6 +18,11 @@ jobs:
         with:
           label: palette
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push combined changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git push origin main
   merge-sentinel:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.label.name == 'sentinel' }}
@@ -30,6 +35,11 @@ jobs:
         with:
           label: sentinel
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push combined changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git push origin main
   merge-bolt:
       runs-on: ubuntu-latest
       if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.label.name == 'bolt' }}
@@ -42,3 +52,8 @@ jobs:
           with:
             label: bolt
             repo-token: ${{ secrets.GITHUB_TOKEN }}
+        - name: Push combined changes
+          run: |
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git push origin main

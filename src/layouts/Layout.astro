@@ -58,9 +58,9 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID;
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={new URL('/apple-touch-icon.png', Astro.url)} />
         <script>
-            let analyticsId = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;
-            let statsigKey = import.meta.env.PUBLIC_STATSIG_CLIENT_KEY;
-            let posthogKey = import.meta.env.PUBLIC_POSTHOG_API_KEY;
+            const analyticsId = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;
+            const statsigKey = import.meta.env.PUBLIC_STATSIG_CLIENT_KEY;
+            const posthogKey = import.meta.env.PUBLIC_POSTHOG_API_KEY;
 
             if (analyticsId) {
                 // Optimize: Use dynamic import for webVitals to prevent render blocking

@@ -13,7 +13,7 @@ function getConnectionSpeed() {
 
 /**
  * @param {import("web-vitals").Metric} metric
- * @param {{ page: string; analyticsId: string; debug: boolean; }} options
+ * @param {{ params: { [s: string]: any; } | ArrayLike<any>; path: string; analyticsId: string; }} options
  */
 export function sendToAnalytics(metric, options) {
 	const body = {
@@ -26,10 +26,6 @@ export function sendToAnalytics(metric, options) {
 		value: metric.value.toString(),
 		speed: getConnectionSpeed(),
 	};
-
-	if (options.debug) {
-		console.log("[Web Vitals]", metric.name, JSON.stringify(body, null, 2));
-	}
 
 	const blob = new Blob([new URLSearchParams(body).toString()], {
 		// This content type is necessary for `sendBeacon`

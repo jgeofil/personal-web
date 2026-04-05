@@ -8,7 +8,7 @@ import cvData from '../data/cv.json';
 export const prerender = true;
 ---
 
-<Layout title="Jeremy Georges-Filteau - About me" description='Learn more about me.'>
+<Layout title="Jeremy Georges-Filteau - About me" description='Explore the personal website of Jeremy Georges-Filteau, a Machine Learning Engineer and Computational Biologist specializing in GANs and healthcare data.'>
 	<main>
 		<div>
 			<!-- Optimize: Use Astro's Image component with local assets. This allows Astro to automatically optimize the image (resizing, converting to WebP/AVIF, etc.) during the build process, reducing the final bundle size, improving LCP and page load times. Explicit width and height prevent Cumulative Layout Shift (CLS). -->
@@ -26,7 +26,7 @@ export const prerender = true;
 		
 		<ul role="list" class="link-card-grid">
 			<Card
-				href="cv"
+				href="/cv"
 				title="CV"
 				body="You can find my CV here."
 			/>

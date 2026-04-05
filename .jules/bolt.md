@@ -9,3 +9,6 @@
 ## 2026-03-31 - Cache page path resolution in web vitals analytics
 **Learning:** Calculating the anonymized `page` path once in `webVitals` and passing it to `sendToAnalytics` significantly reduces string processing overhead (improving performance by over 80% in benchmarks) compared to recomputing it for every performance metric (FID, TTFB, LCP, etc.).
 **Action:** Pre-calculate values derived from constant page load data instead of recomputing them for each analytical event.
+## 2026-03-26 - Avoid recalculating expensive strings in event handlers
+**Learning:** Calculating the anonymized `page` path once in `webVitals` and passing it to `sendToAnalytics` significantly reduces string processing overhead (improving performance by over 80% in benchmarks) compared to recomputing it for every performance metric (FID, TTFB, LCP, etc.). The previous logic passed the raw `location.search` string causing incorrect index-based replacements.
+**Action:** When working with repetitive vitals tracking logic, ensure common processing overhead—such as URL masking and object mapping—is computed exactly once outside the measurement callbacks and correctly map string query parameters into an object via `Object.fromEntries(new URLSearchParams(...))`.

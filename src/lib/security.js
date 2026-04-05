@@ -1,14 +1,31 @@
 export function sanitizeUrl(url) {
-	if (typeof url !== "string") {
+	if (typeof url !== "string" || !url.trim()) {
 		return "#";
 	}
-	const lowerUrl = url.trim().toLowerCase();
+
+	// Prevent XSS bypass via whitespace/control characters in protocols like javascript:
+	const normalizedUrl = url.replace(/[\x00-\x20]/g, "").toLowerCase();
 	if (
-		lowerUrl.startsWith("javascript:") ||
-		lowerUrl.startsWith("data:") ||
-		lowerUrl.startsWith("vbscript:")
+		normalizedUrl.startsWith("javascript:") ||
+		normalizedUrl.startsWith("data:") ||
+		normalizedUrl.startsWith("vbscript:")
 	) {
 		return "#";
 	}
-	return url;
+
+	try {
+		const parsedUrl = new URL(url);
+		if (['https:', 'http:', 'mailto:'].includes(parsedUrl.protocol)) {
+			return url;
+		}
+		return '#';
+	} catch (e) {
+		// URL constructor throws for relative URLs.
+		// We can assume relative URLs are safe in this context.
+		// A simple check for relative URLs is that they don't contain `://`.
+		if (!url.includes('://')) {
+			return url;
+		}
+		return '#';
+	}
 }

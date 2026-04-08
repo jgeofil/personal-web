@@ -9,3 +9,7 @@
 ## 2024-05-24 - Add tooltip for icon-only links
 **Learning:** Icon-only links populated from dynamic data (like in `SocialGrid.astro`) need visual `title` tooltips in addition to `aria-label`s to improve usability for sighted users who may not recognize the icon.
 **Action:** Always add a `title` attribute matching the `aria-label` when rendering icon-only links, especially when the link text is not visually present.
+
+## 2024-05-24 - Screen reader context for repeated link text
+**Learning:** Using data fields like `item.title` for `aria-label` on social links fails when the title is identical across multiple platforms (e.g., "jgeofil" for GitHub, LinkedIn, and Twitter). Sighted users rely on the visual icons, but screen readers only hear the repeated title.
+**Action:** Always include the platform or icon name in the accessible text (e.g., `<span class="sr-only">GitHub: </span>`) to provide necessary context for screen reader users when visual icons are hidden.

@@ -2,11 +2,23 @@
 import { sanitizeUrl } from "../lib/security.js";
 const { items } = Astro.props;
 const ICON_SIZE = 48;
+
+const formatPlatform = (icon) => {
+	const platforms = {
+		googlescholar: 'Google Scholar',
+		github: 'GitHub',
+		linkedin: 'LinkedIn',
+		x: 'X (Twitter)'
+	};
+	return platforms[icon] || icon;
+};
 ---
 
 <ul class="list-grid">
 	{items.map((item, index) => (
-		<li><a href={sanitizeUrl(item.url)} target="_blank" rel="noopener noreferrer" aria-label={item.title} title={item.title}><!-- Optimize: lazy loading images improves LCP. Explicit width/height prevents Cumulative Layout Shift (CLS) -->
+		<li><a href={sanitizeUrl(item.url)} target="_blank" rel="noopener noreferrer" title={`${formatPlatform(item.icon)}: ${item.title}`}>
+			<span class="sr-only">{formatPlatform(item.icon)}: {item.title} (opens in a new tab)</span>
+			<!-- Optimize: lazy loading images improves LCP. Explicit width/height prevents Cumulative Layout Shift (CLS) -->
 			<img src={item.icon_url ? item.icon_url : `https://cdn.simpleicons.org/${item.icon}/${item.color}`} alt="" aria-hidden="true" loading="lazy" width={ICON_SIZE} height={ICON_SIZE} /></a></li>
 	))}
 </ul>

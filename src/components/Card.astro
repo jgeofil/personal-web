@@ -1,4 +1,6 @@
 ---
+import { sanitizeUrl } from "../lib/security.js";
+
 export interface Props {
 	title: string;
 	body: string;
@@ -9,7 +11,7 @@ const { href, title, body } = Astro.props as Props;
 ---
 
 <li class="link-card">
-	<a href={href}>
+	<a href={sanitizeUrl(href)}>
 		<h2>
 			{title}
 			<span aria-hidden="true">&rarr;</span>

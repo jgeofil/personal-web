@@ -12,3 +12,8 @@
 **Vulnerability:** The iframe embedding a Google Doc in `src/pages/privacy.astro` lacked a `sandbox` attribute, potentially allowing the embedded content to execute malicious scripts or navigate the top-level browsing context.
 **Learning:** Iframes embedding external content must use the `sandbox` attribute to minimize security risks.
 **Prevention:** Always add a `sandbox` attribute (e.g., `sandbox="allow-scripts allow-same-origin"`) to `<iframe>` elements loading external resources.
+
+## 2024-05-06 - Prevent XSS via Protocol Obfuscation with HTML Entities
+**Vulnerability:** The `sanitizeUrl` function in `src/lib/security.js` was removing control characters and checking for obfuscated protocols using `&colon;`, but it didn't decode generic hexadecimal and decimal HTML entities. Attackers could bypass XSS protections using encoded protocols like `&#x6A;avascript:alert(1)`.
+**Learning:** Browsers often decode HTML entities within attributes like `href` or `src` before interpreting the URI protocol. Therefore, any URL sanitization logic must properly decode these entities prior to validating the scheme.
+**Prevention:** Ensure URL validation decodes standard HTML entities (hexadecimal, decimal, and named) before checking against a blocklist of dangerous protocols.

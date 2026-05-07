@@ -105,6 +105,6 @@ describe("sendToAnalytics", () => {
 		const text = await blob.text();
 		const params = new URLSearchParams(text);
 
-		expect(params.get("page")).toBe("undefined"); // or empty string depending on URLSearchParams implementation
+		expect(params.get("page")).toBe(""); // or empty string depending on URLSearchParams implementation
 	});
 });

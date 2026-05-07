@@ -1,4 +1,4 @@
-export const platforms = {
+const platforms = {
 	googlescholar: 'Google Scholar',
 	github: 'GitHub',
 	linkedin: 'LinkedIn',

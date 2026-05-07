@@ -1,17 +1,14 @@
 ---
 import { sanitizeUrl } from "../lib/security.js";
+import { formatPlatform } from "../lib/formatters.js";
+
 const { items } = Astro.props;
 const ICON_SIZE = 16;
 
-const formatPlatform = (icon) => {
-	const platforms = {
-		googlescholar: 'Google Scholar',
-		github: 'GitHub',
-		linkedin: 'LinkedIn',
-		x: 'X (Twitter)'
-	};
-	return platforms[icon] || icon;
-};
+// Optimize: Moved the formatPlatform function and its internal platforms map
+// to a separate utility file. By hoisting this static object and function
+// out of the component, we avoid instantiating them on every render cycle,
+// saving memory allocations and speeding up list rendering.
 ---
 
 <ul class="list-grid">

@@ -13,12 +13,12 @@ function getConnectionSpeed() {
 
 /**
  * @param {import("web-vitals").Metric} metric
- * @param {{ params: { [s: string]: any; } | ArrayLike<any>; path: string; analyticsId: string; debug: boolean; }} options
+ * @param {{ params?: { [s: string]: any; } | ArrayLike<any>; path?: string; page?: string; analyticsId: string; debug?: boolean; }} options
  */
 export function sendToAnalytics(metric, options) {
-	const page = Object.entries(options.params).reduce(
+	const page = Object.entries(options.params || {}).reduce(
 		(acc, [key, value]) => acc.replace(value, `[${key}]`),
-		options.path
+		options.path || options.page || ""
 	);
 
 	const body = {

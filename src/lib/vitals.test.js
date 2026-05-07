@@ -40,7 +40,8 @@ describe("sendToAnalytics", () => {
 
 	const mockOptions = {
 		analyticsId: "test-dsn-123",
-		page: "/test-page",
+		path: "/test-page",
+		params: {}
 	};
 
 	test("uses sendBeacon when available", () => {
@@ -99,7 +100,7 @@ describe("sendToAnalytics", () => {
 	});
 
 	test("handles missing page gracefully", async () => {
-		sendToAnalytics(mockMetric, { analyticsId: "test-dsn-123" });
+		sendToAnalytics(mockMetric, { analyticsId: "test-dsn-123", path: "undefined", params: {} });
 
 		const blob = navigator.sendBeacon.mock.calls[0][1];
 		const text = await blob.text();

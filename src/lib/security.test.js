@@ -38,6 +38,22 @@ describe("sanitizeUrl", () => {
 		expect(sanitizeUrl("data\t:text/html,<html>")).toBe("#");
 	});
 
+	it("should block obfuscated protocols with HTML entities", () => {
+		expect(sanitizeUrl("&#x6A;avascript:alert(1)")).toBe("#");
+		expect(sanitizeUrl("javascript&#58;alert(1)")).toBe("#");
+		expect(sanitizeUrl("javascript&#00058;alert(1)")).toBe("#");
+		expect(sanitizeUrl("javascript&#x3A;alert(1)")).toBe("#");
+		expect(sanitizeUrl("javascript&#x0003A;alert(1)")).toBe("#");
+		expect(sanitizeUrl("javascript&colon;alert(1)")).toBe("#");
+		expect(sanitizeUrl("j&#x09;avascript:alert(1)")).toBe("#");
+		expect(sanitizeUrl("javascript&tab;:alert(1)")).toBe("#");
+		expect(sanitizeUrl("javascript&newline;:alert(1)")).toBe("#");
+		// Missing trailing semicolon
+		expect(sanitizeUrl("&#x6A;avascript:alert(1)")).toBe("#");
+		expect(sanitizeUrl("javascript&#58;alert(1)")).toBe("#");
+		expect(sanitizeUrl("javascript&colon;alert(1)")).toBe("#");
+	});
+
 	it("should return # for non-string inputs", () => {
 		expect(sanitizeUrl(null)).toBe("#");
 		expect(sanitizeUrl(undefined)).toBe("#");

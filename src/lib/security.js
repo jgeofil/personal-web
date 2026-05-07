@@ -7,9 +7,17 @@ export function sanitizeUrl(url) {
 		return "#";
 	}
 
+	// Decode HTML entities before sanitizing
+	let decodedUrl = url
+		.replace(/&#(\d+);?/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)))
+		.replace(/&#x([0-9a-f]+);?/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+		.replace(/&colon;?/gi, ":")
+		.replace(/&tab;?/gi, "\t")
+		.replace(/&newline;?/gi, "\n");
+
 	// Remove control characters and any characters that browsers may ignore
 	// but could be used for obfuscation (e.g. \x00-\x1F, \x7F-\x9F)
-	const sanitized = url.replace(CONTROL_CHARS_REGEX, "").trim();
+	const sanitized = decodedUrl.replace(CONTROL_CHARS_REGEX, "").trim();
 
 	if (!sanitized) {
 		return "#";

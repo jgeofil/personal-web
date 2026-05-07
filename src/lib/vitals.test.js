@@ -40,7 +40,8 @@ describe("sendToAnalytics", () => {
 
 	const mockOptions = {
 		analyticsId: "test-dsn-123",
-		page: "/test-page",
+		path: "/test-page",
+		params: {}
 	};
 
 	test("uses sendBeacon when available", () => {
@@ -99,12 +100,12 @@ describe("sendToAnalytics", () => {
 	});
 
 	test("handles missing page gracefully", async () => {
-		sendToAnalytics(mockMetric, { analyticsId: "test-dsn-123" });
+		sendToAnalytics(mockMetric, { analyticsId: "test-dsn-123", params: {} });
 
 		const blob = navigator.sendBeacon.mock.calls[0][1];
 		const text = await blob.text();
 		const params = new URLSearchParams(text);
 
-		expect(params.get("page")).toBe("undefined"); // or empty string depending on URLSearchParams implementation
+		expect(params.get("page")).toBe(""); // or empty string depending on URLSearchParams implementation
 	});
 });

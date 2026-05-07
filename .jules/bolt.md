@@ -5,3 +5,7 @@
 ## 2026-03-25 - Prevent Cumulative Layout Shift (CLS) in Astro components
 **Learning:** Providing explicit `width` and `height` attributes to `<img>` tags matching their CSS aspect ratio prevents Cumulative Layout Shift (CLS) by allowing the browser to reserve space for the image before it loads.
 **Action:** Add explicit `width` and `height` attributes to images whenever their CSS dimensions are known.
+
+## 2024-05-24 - Hoisting Static Objects
+**Learning:** Hoisting static objects from functions avoids redundant re-instantiation during rendering loops, leading to performance improvements.
+**Action:** Centralize static objects in utility modules to avoid redundant creation.

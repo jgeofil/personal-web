@@ -36,65 +36,74 @@ const { title, description } = Astro.props as Props;
         <meta name="title" content={title} />
         <meta name="description" content={description} />
         <title>{title}</title>
+        <link rel="preconnect" href="https://t.mlread.me" />
         <script>
             const analyticsId = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;
             const statsigKey = import.meta.env.PUBLIC_STATSIG_CLIENT_KEY;
             const posthogKey = import.meta.env.PUBLIC_POSTHOG_API_KEY;
 
-            if (analyticsId) {
-                // Optimize: Use dynamic import for webVitals to prevent render blocking
-                import("../lib/vitals.js")
-                    .then(({ webVitals }) => {
-                        webVitals({
-                            path: location.pathname,
-                            params: location.search,
-                            analyticsId,
+            const initAnalytics = () => {
+                if (analyticsId) {
+                    // Optimize: Use dynamic import for webVitals to prevent render blocking
+                    import("../lib/vitals.js")
+                        .then(({ webVitals }) => {
+                            webVitals({
+                                path: location.pathname,
+                                params: location.search,
+                                analyticsId,
+                            });
+                        })
+                        .catch((err) => {
+                            console.error("[Web Vitals] dynamic import failed", err);
                         });
+                }
+
+                if (statsigKey) {
+                    // Optimize: Use dynamic imports for Statsig to enable code splitting and reduce initial client payload size
+                    Promise.all([
+                        import("@statsig/js-client"),
+                        import("@statsig/session-replay"),
+                        import("@statsig/web-analytics")
+                    ]).then(([
+                        { StatsigClient },
+                        { StatsigSessionReplayPlugin },
+                        { StatsigAutoCapturePlugin }
+                    ]) => {
+                        const statsig = new StatsigClient(
+                            statsigKey,
+                            {},
+                            {
+                                plugins: [new StatsigAutoCapturePlugin(), new StatsigSessionReplayPlugin()],
+                            },
+                        );
+
+                        // Initialize
+                        statsig.initializeAsync().catch(console.error);
                     })
                     .catch((err) => {
-                        console.error("[Web Vitals] dynamic import failed", err);
+                        console.error("[Statsig] dynamic import failed", err);
                     });
-            }
+                }
 
-            if (statsigKey) {
-                // Optimize: Use dynamic imports for Statsig to enable code splitting and reduce initial client payload size
-                Promise.all([
-                    import("@statsig/js-client"),
-                    import("@statsig/session-replay"),
-                    import("@statsig/web-analytics")
-                ]).then(([
-                    { StatsigClient },
-                    { StatsigSessionReplayPlugin },
-                    { StatsigAutoCapturePlugin }
-                ]) => {
-                    const statsig = new StatsigClient(
-                        statsigKey,
-                        {},
-                        {
-                            plugins: [new StatsigAutoCapturePlugin(), new StatsigSessionReplayPlugin()],
-                        },
-                    );
-
-                    // Initialize
-                    statsig.initializeAsync().catch(console.error);
-                })
-                .catch((err) => {
-                    console.error("[Statsig] dynamic import failed", err);
-                });
-            }
-
-            if (posthogKey) {
-                // Optimize: Use dynamic import for PostHog to enable code splitting and reduce initial client payload size
-                import("posthog-js")
-                    .then((posthog) => {
-                        posthog.default.init(posthogKey, {
-                            api_host: 'https://t.mlread.me',
-                            defaults: '2026-01-30'
+                if (posthogKey) {
+                    // Optimize: Use dynamic import for PostHog to enable code splitting and reduce initial client payload size
+                    import("posthog-js")
+                        .then((posthog) => {
+                            posthog.default.init(posthogKey, {
+                                api_host: 'https://t.mlread.me',
+                                defaults: '2026-01-30'
+                            });
+                        })
+                        .catch((err) => {
+                            console.error("[PostHog] dynamic import failed", err);
                         });
-                    })
-                    .catch((err) => {
-                        console.error("[PostHog] dynamic import failed", err);
-                    });
+                }
+            };
+
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(initAnalytics);
+            } else {
+                setTimeout(initAnalytics, 1);
             }
         </script>
     </head>

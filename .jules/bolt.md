@@ -9,3 +9,7 @@
 ## 2024-05-24 - Hoisting Static Objects
 **Learning:** Hoisting static objects from functions avoids redundant re-instantiation during rendering loops, leading to performance improvements.
 **Action:** Centralize static objects in utility modules to avoid redundant creation.
+
+## 2024-05-24 - Defer third-party scripts to improve Total Blocking Time (TBT)
+**Learning:** Third-party analytics scripts like PostHog, Statsig, and Vercel Analytics can significantly impact initial load performance and increase Total Blocking Time (TBT) if loaded and executed immediately on the main thread.
+**Action:** Wrap the dynamic import and initialization logic for these third-party scripts in `requestIdleCallback` (with a `setTimeout` fallback). Also, use `<link rel="preconnect" href="<API_HOST>" />` in the `<head>` to reduce network connection latency.

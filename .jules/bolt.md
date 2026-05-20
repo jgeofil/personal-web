@@ -13,3 +13,7 @@
 ## 2024-05-24 - Defer third-party scripts to improve Total Blocking Time (TBT)
 **Learning:** Third-party analytics scripts like PostHog, Statsig, and Vercel Analytics can significantly impact initial load performance and increase Total Blocking Time (TBT) if loaded and executed immediately on the main thread.
 **Action:** Wrap the dynamic import and initialization logic for these third-party scripts in `requestIdleCallback` (with a `setTimeout` fallback). Also, use `<link rel="preconnect" href="<API_HOST>" />` in the `<head>` to reduce network connection latency.
+
+## 2026-05-20 - Remove Stale Comments
+**Learning:** Outdated or completed "Optimize:" comments can clutter the codebase and reduce maintainability.
+**Action:** When working on code health, ensure comments accurately reflect the current state of the code and remove those that point to optimizations already implemented.

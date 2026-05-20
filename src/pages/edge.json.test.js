@@ -1,5 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import { get } from "./edge.json.js";
+import { describe, expect, it } from "bun:test";
+import { GET } from "./edge.json.js";
 
 describe("edge.json.js GET handler", () => {
   it("should return a 200 Response with correct headers and JSON body", async () => {

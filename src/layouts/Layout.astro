@@ -65,9 +65,9 @@ const { title, description } = Astro.props as Props;
                         import("@statsig/session-replay"),
                         import("@statsig/web-analytics")
                     ]).then(([
-                        { StatsigClient },
-                        { StatsigSessionReplayPlugin },
-                        { StatsigAutoCapturePlugin }
+                        { default: { StatsigClient } },
+                        { default: { StatsigSessionReplayPlugin } },
+                        { default: { StatsigAutoCapturePlugin } }
                     ]) => {
                         const statsig = new StatsigClient(
                             statsigKey,

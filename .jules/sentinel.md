@@ -17,3 +17,8 @@
 **Vulnerability:** The `sanitizeUrl` function in `src/lib/security.js` was removing control characters and checking for obfuscated protocols using `&colon;`, but it didn't decode generic hexadecimal and decimal HTML entities. Attackers could bypass XSS protections using encoded protocols like `&#x6A;avascript:alert(1)`.
 **Learning:** Browsers often decode HTML entities within attributes like `href` or `src` before interpreting the URI protocol. Therefore, any URL sanitization logic must properly decode these entities prior to validating the scheme.
 **Prevention:** Ensure URL validation decodes standard HTML entities (hexadecimal, decimal, and named) before checking against a blocklist of dangerous protocols.
+
+## 2024-05-20 - Added Content-Security-Policy header
+**Vulnerability:** Missing Content-Security-Policy (CSP) Header in vercel.json.
+**Learning:** A basic CSP header mitigates XSS risks and is a straightforward configuration improvement.
+**Prevention:** Ensure CSP is configured in the web server settings by default.

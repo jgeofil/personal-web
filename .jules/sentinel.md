@@ -17,3 +17,8 @@
 **Vulnerability:** The `sanitizeUrl` function in `src/lib/security.js` was removing control characters and checking for obfuscated protocols using `&colon;`, but it didn't decode generic hexadecimal and decimal HTML entities. Attackers could bypass XSS protections using encoded protocols like `&#x6A;avascript:alert(1)`.
 **Learning:** Browsers often decode HTML entities within attributes like `href` or `src` before interpreting the URI protocol. Therefore, any URL sanitization logic must properly decode these entities prior to validating the scheme.
 **Prevention:** Ensure URL validation decodes standard HTML entities (hexadecimal, decimal, and named) before checking against a blocklist of dangerous protocols.
+## 2024-05-20 - Incomplete URL Sanitization
+
+**Vulnerability:** A URL sanitization function validated a URL after decoding entities and stripping control characters, but returned the original, un-decoded, potentially obfuscated string instead of the safe version.
+**Learning:** Always return the sanitized version of a string, not the original input. Validating a safe copy while returning the dangerous original bypasses the sanitization effort entirely.
+**Prevention:** Ensure functions that manipulate and validate input strings (like removing control characters or decoding HTML entities) return the modified, validated string. Write tests that assert the return value is the expected sanitized string, not just that it blocks known bad inputs.

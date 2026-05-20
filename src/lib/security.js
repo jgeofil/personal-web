@@ -38,5 +38,5 @@ export function sanitizeUrl(url) {
 		return "#";
 	}
 
-	return url;
+	return sanitized;
 }

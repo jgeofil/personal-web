@@ -17,3 +17,6 @@
 ## 2026-05-20 - Remove Stale Comments
 **Learning:** Outdated or completed "Optimize:" comments can clutter the codebase and reduce maintainability.
 **Action:** When working on code health, ensure comments accurately reflect the current state of the code and remove those that point to optimizations already implemented.
+## 2026-05-20 - Optimize object iteration
+**Learning:** Using a `for...in` loop is significantly faster than `Object.entries().reduce()` for simple object iteration and string replacements, avoiding array allocations and callback overhead.
+**Action:** Prefer `for...in` loops over `Object.entries().reduce()` in performance-critical paths, such as analytics reporting loops.

@@ -1,3 +1,6 @@
+## 2026-05-20 - Dynamic Imports module destructuring
+**Learning:** Modern bundlers and runtimes (like Node/Bun) often expose both the named exports directly on the module namespace object returned by a dynamic import *and* nested inside a `default` property (if they originate from standard ESM). Attempting to destructure deep into the `default` object when the named export is readily available on the top-level namespace is not only unnecessary but can cause severe runtime errors if the toolchain doesn't construct the default object as expected.
+**Action:** When dynamically importing third-party libraries, inspect the module namespace structure using a temporary script before assuming `default` exports are required for destructuring. Rely on the top-level named exports if they are provided, as it is robust and standard.
 ## 2026-03-24 - Performance optimizations
 **Learning:** Standard performance optimizations for images in Astro components include adding `loading="lazy"`, `width`, and `height` attributes to `<img>` tags.
 **Action:** Consistently add `loading="lazy"` to below-the-fold or grid images to improve LCP and initial page load times.

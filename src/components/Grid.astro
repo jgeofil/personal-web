@@ -2,7 +2,7 @@
 const { items } = Astro.props;
 ---
 
-<ul class="list-grid">
+<ul role="list" class="list-grid">
 	{items.map((item, index) => (
 		<li>{item}</li>  
 	))}

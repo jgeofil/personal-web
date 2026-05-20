@@ -44,7 +44,6 @@ const { title, description } = Astro.props as Props;
 
             const initAnalytics = () => {
                 if (analyticsId) {
-                    // Optimize: Use dynamic import for webVitals to prevent render blocking
                     import("../lib/vitals.js")
                         .then(({ webVitals }) => {
                             webVitals({
@@ -59,7 +58,6 @@ const { title, description } = Astro.props as Props;
                 }
 
                 if (statsigKey) {
-                    // Optimize: Use dynamic imports for Statsig to enable code splitting and reduce initial client payload size
                     Promise.all([
                         import("@statsig/js-client"),
                         import("@statsig/session-replay"),
@@ -86,7 +84,6 @@ const { title, description } = Astro.props as Props;
                 }
 
                 if (posthogKey) {
-                    // Optimize: Use dynamic import for PostHog to enable code splitting and reduce initial client payload size
                     import("posthog-js")
                         .then((posthog) => {
                             posthog.default.init(posthogKey, {

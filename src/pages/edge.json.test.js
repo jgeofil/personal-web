@@ -13,8 +13,7 @@ describe("edge.json.js GET handler", () => {
     expect(response.headers.get("Cache-Control")).toBe("s-maxage=10, stale-while-revalidate");
 
     // Check JSON body
-    const bodyText = await response.text();
-    const data = JSON.parse(bodyText);
+    const data = await response.json();
 
     // Assert the response has a valid time field
     expect(data).toHaveProperty("time");

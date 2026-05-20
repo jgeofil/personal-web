@@ -20,8 +20,10 @@ export function sendToAnalytics(metric, options) {
 	// for simple object iteration as it avoids array allocations and callback overhead.
 	let page = options.path || options.page || "";
 	const params = options.params || {};
-	for (const key in params) {
-		page = page.replace(params[key], `[${key}]`);
+for (const key in params) {
+		if (Object.hasOwn(params, key)) {
+			page = page.replaceAll(params[key], `[${key}]`);
+		}
 	}
 
 	const body = {

@@ -11,7 +11,6 @@ export const prerender = true;
 <Layout title="Jeremy Georges-Filteau - About me" description='Learn more about me.'>
 	<main>
 		<div>
-			<!-- Optimize: Use Astro's Image component with local assets. This allows Astro to automatically optimize the image (resizing, converting to WebP/AVIF, etc.) during the build process, reducing the final bundle size, improving LCP and page load times. Explicit width and height prevent Cumulative Layout Shift (CLS). -->
 			<Image class="profile-img" src={profileImage} alt="Jeremy Georges-Filteau" width="200" height="200" loading="eager" />
 			
 			

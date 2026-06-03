@@ -1,0 +1,7 @@
+💡 What: Removed duplicate `<style>` blocks for tables from `DatedRow.astro`, `Funding.astro`, `Project.astro`, and `Publication.astro`, and consolidated them in the parent page `cv.astro` using the `:global` modifier.
+
+🎯 Why: To reduce the CSS payload size and avoid sending identical styles multiple times to the client.
+
+📊 Impact: Reduces the size of the generated HTML/CSS by eliminating duplicate class declarations. This also improves maintainability.
+
+🔬 Measurement: Run `bun run build` and inspect the generated HTML for `cv/index.html`. You can confirm that the table styles are included only once in the `<style>` block at the top, rather than duplicated for each table component.

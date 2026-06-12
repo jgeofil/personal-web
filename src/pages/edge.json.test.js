@@ -1,5 +1,6 @@
 import { describe, expect, it } from "bun:test";
-import { get } from "./edge.json.js";
+import { describe, expect, it } from "bun:test";
+import { GET } from "./edge.json.js";
 
 describe("edge.json.js GET handler", () => {
   it("should return a 200 Response with correct headers and JSON body", async () => {
@@ -13,8 +14,7 @@ describe("edge.json.js GET handler", () => {
     expect(response.headers.get("Cache-Control")).toBe("s-maxage=10, stale-while-revalidate");
 
     // Check JSON body
-    const bodyText = await response.text();
-    const data = JSON.parse(bodyText);
+    const data = await response.json();
 
     // Assert the response has a valid time field
     expect(data).toHaveProperty("time");

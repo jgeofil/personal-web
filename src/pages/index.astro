@@ -11,7 +11,8 @@ export const prerender = true;
 <Layout title="Jeremy Georges-Filteau - About me" description='Learn more about me.'>
 	<main>
 		<div>
-			<Image class="profile-img" src={profileImage} alt="Jeremy Georges-Filteau" width="200" height="200" loading="eager" />
+			<!-- Optimize: Add fetchpriority="high" to the LCP image to instruct the browser to prioritize its download, improving LCP time. -->
+			<Image class="profile-img" src={profileImage} alt="Jeremy Georges-Filteau" width="200" height="200" loading="eager" fetchpriority="high" />
 			
 			
 			<div class="about">

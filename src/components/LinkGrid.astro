@@ -14,7 +14,7 @@ const ICON_SIZE = 16;
 <ul role="list" class="list-grid">
 	{items.map((item, index) => (
 		<li><!-- Optimize: lazy loading images improves LCP. Explicit width/height prevents Cumulative Layout Shift (CLS) -->
-			<a href={sanitizeUrl(item.url)} target="_blank" rel="noopener noreferrer"><img src={`https://cdn.simpleicons.org/${item.icon}/${item.color}`} alt="" aria-hidden="true" loading="lazy" width={ICON_SIZE} height={ICON_SIZE} /><span class="sr-only">{formatPlatform(item.icon)}: </span>{item.title}<span class="sr-only"> (opens in a new tab)</span></a></li>
+			<a href={sanitizeUrl(item.url)} target="_blank" rel="noopener noreferrer"><img src={sanitizeUrl(`https://cdn.simpleicons.org/${item.icon}/${item.color}`)} alt="" aria-hidden="true" loading="lazy" width={ICON_SIZE} height={ICON_SIZE} /><span class="sr-only">{formatPlatform(item.icon)}: </span>{item.title}<span class="sr-only"> (opens in a new tab)</span></a></li>
 	))}
 </ul>
 <style define:vars={{ iconSize: `${ICON_SIZE}px` }}>

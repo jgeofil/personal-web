@@ -7,8 +7,22 @@ export function sanitizeUrl(url) {
 		return "#";
 	}
 
+	// URL decode to handle obfuscated protocols like %6a%61%76%61%73%63%72%69%70%74%3a
+	// Try decoding repeatedly to handle double-encoding (e.g. %253A -> %3A -> :)
+	let urlDecodedUrl = url;
+	let prevUrl;
+	do {
+		prevUrl = urlDecodedUrl;
+		try {
+			urlDecodedUrl = decodeURIComponent(urlDecodedUrl);
+		} catch (e) {
+			// Ignore invalid URL encoding, stick with the last valid decoded string
+			break;
+		}
+	} while (urlDecodedUrl !== prevUrl);
+
 	// Decode HTML entities before sanitizing
-	let decodedUrl = url
+	let decodedUrl = urlDecodedUrl
 		.replace(/&#(\d+);?/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)))
 		.replace(/&#x([0-9a-f]+);?/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
 		.replace(/&colon;?/gi, ":")

@@ -26,3 +26,8 @@
 **Vulnerability:** Missing `Permissions-Policy` header allows potential access to sensitive browser features (camera, microphone, geolocation) by malicious scripts or third-party embeds in the event of an XSS attack.
 **Learning:** Security headers like `Permissions-Policy` (formerly `Feature-Policy`) provide a crucial secondary layer of defense, restricting browser API access globally even if other application-level mitigations fail, and should be explicitly configured in deployment settings like `vercel.json`.
 **Prevention:** Regularly audit and apply modern security headers in deployment configuration files (`vercel.json`, `next.config.js`, etc.) to proactively restrict access to unnecessary but sensitive browser features.
+
+## 2026-05-20 - Prevent XSS via URL Encoding Obfuscation
+**Vulnerability:** The `sanitizeUrl` function in `src/lib/security.js` prevented XSS by verifying HTML entities and stripping control characters, but failed to URL decode input. Obfuscated malicious protocols, like `%6a%61%76%61%73%63%72%69%70%74%3aalert(1)` (URL encoded `javascript:alert(1)`), could bypass checks since the browser would decode the URL in attributes.
+**Learning:** Browsers implicitly URL decode attribute strings. Sanitization layers must iteratively decode standard URL encodings (and double encodings) before comparing the input against protocol blocklists.
+**Prevention:** Implement a `do...while` loop utilizing `decodeURIComponent` (safeguarded within a `try...catch`) at the start of sanitization logic. This guarantees all layers of percent-encoding are unraveled prior to evaluating potentially dangerous schemes.

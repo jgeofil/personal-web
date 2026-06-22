@@ -68,4 +68,10 @@ describe("sanitizeUrl", () => {
 		expect(sanitizeUrl("   ")).toBe("#");
 		expect(sanitizeUrl("\x00\x01\x02")).toBe("#");
 	});
+
+	it("should block URL encoded obfuscated protocols", () => {
+		expect(sanitizeUrl("%6a%61%76%61%73%63%72%69%70%74%3a%61%6c%65%72%74%28%31%29")).toBe("#");
+		expect(sanitizeUrl("javascript%3Aalert(1)")).toBe("#");
+		expect(sanitizeUrl("javascript%253Aalert(1)")).toBe("#");
+	});
 });

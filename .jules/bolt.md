@@ -23,3 +23,6 @@
 ## 2026-05-20 - Optimize object iteration
 **Learning:** Using a `for...in` loop is significantly faster than `Object.entries().reduce()` for simple object iteration and string replacements, avoiding array allocations and callback overhead.
 Action: Prefer for...in loops (with an Object.hasOwn() check) over Object.entries().reduce() in performance-critical paths, such as analytics reporting loops.
+## 2026-06-10 - Defer third-party inline scripts to improve Total Blocking Time (TBT)
+**Learning:** Inline scripts that inject third-party tags (like Google Tag Manager) can block the main thread and delay initial rendering if executed immediately, increasing Total Blocking Time (TBT).
+**Action:** Wrap inline script insertion logic for non-critical third-party integrations in `requestIdleCallback` (with a `setTimeout` fallback) to defer their execution until the main thread is idle.

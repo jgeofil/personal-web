@@ -26,3 +26,6 @@ Action: Prefer for...in loops (with an Object.hasOwn() check) over Object.entrie
 ## 2026-06-10 - Defer third-party inline scripts to improve Total Blocking Time (TBT)
 **Learning:** Inline scripts that inject third-party tags (like Google Tag Manager) can block the main thread and delay initial rendering if executed immediately, increasing Total Blocking Time (TBT).
 **Action:** Wrap inline script insertion logic for non-critical third-party integrations in `requestIdleCallback` (with a `setTimeout` fallback) to defer their execution until the main thread is idle.
+## 2026-06-10 - Defer third-party inline scripts to improve Total Blocking Time (TBT)
+**Learning:** Inline scripts that inject third-party tags (like Google Tag Manager) can block the main thread and delay initial rendering if executed immediately, increasing Total Blocking Time (TBT).
+**Action:** Wrap inline script insertion logic for non-critical third-party integrations in `requestIdleCallback` (with a `setTimeout` fallback) to defer their execution until the main thread is idle.

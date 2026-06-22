@@ -11,6 +11,8 @@ const { title, description } = Astro.props as Props;
 <!doctype html>
 <html lang="en">
     <head>
+        <!-- Optimize: Early preconnect to GTM domain to reduce DNS, TCP, and TLS latency, improving script load time. -->
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <!-- Google Tag Manager -->
         <script is:inline>
             (function (w, d, s, l, i) {
@@ -174,6 +176,10 @@ const { title, description } = Astro.props as Props;
             Bitstream Vera Sans Mono,
             Courier New,
             monospace;
+    }
+
+    :global(li) {
+        font-size: 0.9em;
     }
 
     :global(.sr-only) {

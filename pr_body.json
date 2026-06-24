@@ -1,0 +1,6 @@
+{
+  "title": "⚡ Bolt: Defer Google Tag Manager initialization",
+  "head": "bolt-defer-gtm",
+  "base": "main",
+  "body": "💡 What: Wrapping the Google Tag Manager inline script initialization logic in `requestIdleCallback` (with a `setTimeout` fallback) and adding a `<link rel=\"preconnect\" href=\"https://www.googletagmanager.com\" />` tag to the `<head>`.\n\n🎯 Why: Inline scripts that inject third-party tags block the main thread and delay initial rendering if executed immediately. Preconnecting reduces latency and deferring non-critical execution improves Total Blocking Time (TBT).\n\n📊 Impact: Expected to significantly reduce Total Blocking Time (TBT) and improve initial page load performance.\n\n🔬 Measurement: Can be verified by running performance audits (e.g., Lighthouse) before and after the change, specifically observing the TBT and initial script evaluation time metrics."
+}

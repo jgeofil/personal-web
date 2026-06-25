@@ -1,0 +1,10 @@
+<<<<<<< SEARCH
+import { onCLS, onFCP, onFID, onLCP, onTTFB } from "web-vitals";
+=======
+import { onCLS, onFCP, onINP, onLCP, onTTFB } from "web-vitals";
+>>>>>>> REPLACE
+<<<<<<< SEARCH
+		onFID((metric) => sendToAnalytics(metric, options));
+=======
+		onINP((metric) => sendToAnalytics(metric, options));
+>>>>>>> REPLACE

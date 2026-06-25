@@ -1,0 +1,8 @@
+This PR combines the following dependency bumps into a single update to reduce PR clutter and run CI efficiently:
+
+- Closes #254 (bump react from 18.3.1 to 19.2.7)
+- Closes #249 (bump web-vitals from 4.2.4 to 5.3.0)
+- Closes #241 (bump @vercel/analytics from 1.6.1 to 2.0.1)
+- Closes #240 (bump @vercel/speed-insights from 1.3.1 to 2.0.0)
+
+All dependencies have been successfully resolved and `bun.lock` has been updated accordingly.

@@ -19,8 +19,8 @@ export const prerender = true;
 		
 		<p>
 			<a href="mailto:jeremygeo@gmail.com">jeremygeo@gmail.com</a>
-			 | <a href="tel:+15818491348">581-849-1348</a>
-			 | <a href="https://jeremygf.com">jeremygf.com</a>
+			 <span aria-hidden="true">|</span> <a href="tel:+15818491348">581-849-1348</a>
+			 <span aria-hidden="true">|</span> <a href="https://jeremygf.com">jeremygf.com</a>
 		</p>
 		<em>Machine Learning Engineer, Computational Biologist</em>
 		<p>
@@ -33,7 +33,7 @@ export const prerender = true;
 		<Grid items={cvData.skills} />
 		
 		<h2>Experience</h2>
-		<table>
+		<table role="presentation">
 			<tbody>
 				{cvData.experience.map((job) => (
 					<DatedRow row={job} />
@@ -43,7 +43,7 @@ export const prerender = true;
 
 		<h2>Projects</h2>
 
-		<table>
+		<table role="presentation">
 			<tbody>
 			{cvData.projects.map((project) => (
 				<Project row={project} />
@@ -52,7 +52,7 @@ export const prerender = true;
 		</table>
 
 		<h2>Certificates</h2>
-		<table>
+		<table role="presentation">
 			<tbody>
 				{cvData.certificates.map((certificate) => (
 					<Project row={certificate} />
@@ -61,7 +61,7 @@ export const prerender = true;
 		</table>
 
 		<h2>Education</h2>
-		<table>
+		<table role="presentation">
 			<tbody>
 				{cvData.education.map((school) => (
 					<DatedRow row={school} />
@@ -72,7 +72,7 @@ export const prerender = true;
 		
 
 		<h2>Publications</h2>
-		<table>
+		<table role="presentation">
 			<tbody>
 			{cvData.publications.map((publication) => (
 				<Publication row={publication} />
@@ -81,7 +81,7 @@ export const prerender = true;
 		</table>
 
 		<h2>Grants</h2>
-		<table>
+		<table role="presentation">
 			<tbody>
 			{cvData.grants.map((funding) => (
 				<Funding row={funding} />

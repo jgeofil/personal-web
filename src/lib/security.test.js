@@ -73,5 +73,10 @@ describe("sanitizeUrl", () => {
 		expect(sanitizeUrl("%6a%61%76%61%73%63%72%69%70%74%3a%61%6c%65%72%74%28%31%29")).toBe("#");
 		expect(sanitizeUrl("javascript%3Aalert(1)")).toBe("#");
 		expect(sanitizeUrl("javascript%253Aalert(1)")).toBe("#");
+		expect(sanitizeUrl("%26%23x6a%3bavascript:alert(1)")).toBe("#");
+		expect(sanitizeUrl("%256aavascript:alert(1)")).toBe("#");
+		expect(sanitizeUrl("&#x25;6aavascript:alert(1)")).toBe("#");
+		expect(sanitizeUrl("&#37;6aavascript:alert(1)")).toBe("#");
+		expect(sanitizeUrl("&#x6a;avascript:alert(1)%")).toBe("#");
 	});
 });

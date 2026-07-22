@@ -11,20 +11,6 @@ const { title, description } = Astro.props as Props;
 <!doctype html>
 <html lang="en">
     <head>
-        <!-- Google Tag Manager -->
-        <script is:inline>
-            (function (w, d, s, l, i) {
-                w[l] = w[l] || [];
-                w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-                var f = d.getElementsByTagName(s)[0],
-                    j = d.createElement(s),
-                    dl = l != "dataLayer" ? "&l=" + l : "";
-                j.async = true;
-                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-                f.parentNode.insertBefore(j, f);
-            })(window, document, "script", "dataLayer", "GTM-55MBXTJF");
-        </script>
-        <!-- End Google Tag Manager -->
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -37,12 +23,25 @@ const { title, description } = Astro.props as Props;
         <meta name="description" content={description} />
         <title>{title}</title>
         <link rel="preconnect" href="https://t.mlread.me" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <script>
             const analyticsId = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;
             const statsigKey = import.meta.env.PUBLIC_STATSIG_CLIENT_KEY;
             const posthogKey = import.meta.env.PUBLIC_POSTHOG_API_KEY;
 
             const initAnalytics = () => {
+                // Initialize Google Tag Manager
+                (function (w, d, s, l, i) {
+                    w[l] = w[l] || [];
+                    w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+                    var f = d.getElementsByTagName(s)[0],
+                        j = d.createElement(s),
+                        dl = l != "dataLayer" ? "&l=" + l : "";
+                    j.async = true;
+                    j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                    f.parentNode.insertBefore(j, f);
+                })(window, document, "script", "dataLayer", "GTM-55MBXTJF");
+
                 if (analyticsId) {
                     import("../lib/vitals.js")
                         .then(({ webVitals }) => {

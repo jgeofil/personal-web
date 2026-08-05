@@ -26,3 +26,6 @@ Action: Prefer for...in loops (with an Object.hasOwn() check) over Object.entrie
 ## 2026-06-10 - Defer third-party inline scripts to improve Total Blocking Time (TBT)
 **Learning:** Inline scripts that inject third-party tags (like Google Tag Manager) can block the main thread and delay initial rendering if executed immediately, increasing Total Blocking Time (TBT).
 **Action:** Wrap inline script insertion logic for non-critical third-party integrations in `requestIdleCallback` (with a `setTimeout` fallback) to defer their execution until the main thread is idle.
+## 2025-08-05 - URLSearchParams vs for...in for query strings
+**Learning:** Micro-optimizing query parameter parsing with a `for...in` loop over a string (e.g. `location.search`) is an anti-pattern. While it may avoid object/array allocations, it iterates over string indices (0, 1, 2...) rather than key-value pairs, resulting in unintended character-by-character O(N) regex replacements that can corrupt URL path redacting logic.
+**Action:** Always use `URLSearchParams` for parsing string query parameters, even in performance-sensitive analytics pathways, to ensure correctness and prevent payload corruption.

@@ -16,13 +16,21 @@ function getConnectionSpeed() {
  * @param {{ params?: { [s: string]: any; } | ArrayLike<any>; path?: string; page?: string; analyticsId: string; debug?: boolean; }} options
  */
 export function sendToAnalytics(metric, options) {
-	// Optimize: Using a for...in loop is faster than Object.entries().reduce()
-	// for simple object iteration as it avoids array allocations and callback overhead.
 	let page = options.path || options.page || "";
 	const params = options.params || {};
-for (const key in params) {
-		if (Object.hasOwn(params, key)) {
-			page = page.replaceAll(params[key], `[${key}]`);
+
+	// Optimize: Use URLSearchParams for parsing query strings to avoid character-by-character
+	// iteration and O(N) regex replacements that occur with a simple for...in loop over a string.
+	if (typeof params === 'string') {
+		const searchParams = new URLSearchParams(params);
+		for (const [key, value] of searchParams) {
+			if (value !== '') page = page.replaceAll(value, `[${key}]`);
+		}
+	} else {
+		for (const key in params) {
+			if (Object.hasOwn(params, key) && params[key] !== '' && params[key] != null) {
+				page = page.replaceAll(params[key], `[${key}]`);
+			}
 		}
 	}
 

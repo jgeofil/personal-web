@@ -108,4 +108,33 @@ describe("sendToAnalytics", () => {
 
 		expect(params.get("page")).toBe(""); // or empty string depending on URLSearchParams implementation
 	});
+
+	test("handles string query parameters gracefully", async () => {
+		sendToAnalytics(mockMetric, { analyticsId: "test-dsn-123", path: "/blog/post-123", params: "?id=123" });
+
+		const blob = navigator.sendBeacon.mock.calls[0][1];
+		const text = await blob.text();
+		const params = new URLSearchParams(text);
+
+		// The bug caused 123 to be parsed character by character:
+		// param '?' -> replace '?' with '[0]' -> not found
+		// param 'i' -> replace 'i' with '[1]'
+		// param 'd' -> replace 'd' with '[2]'
+		// param '=' -> replace '=' with '[3]'
+		// param '1' -> replace '1' with '[4]' -> string becomes /blog/post-[4]23
+		// param '2' -> replace '2' with '[5]' -> string becomes /blog/post-[4][5]3
+		// param '3' -> replace '3' with '[6]' -> string becomes /blog/post-[4][5][6]
+		// It should correctly parse id=123 and replace 123 with [id]
+		expect(params.get("page")).toBe("/blog/post-[id]");
+	});
+
+	test("handles falsey values in object params correctly", async () => {
+		sendToAnalytics(mockMetric, { analyticsId: "test-dsn-123", path: "/blog/0/false", params: { id: 0, active: false } });
+
+		const blob = navigator.sendBeacon.mock.calls[0][1];
+		const text = await blob.text();
+		const params = new URLSearchParams(text);
+
+		expect(params.get("page")).toBe("/blog/[id]/[active]");
+	});
 });

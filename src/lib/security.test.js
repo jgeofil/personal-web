@@ -54,6 +54,14 @@ describe("sanitizeUrl", () => {
 		expect(sanitizeUrl("javascript&colon;alert(1)")).toBe("#");
 	});
 
+	it("should block obfuscated protocols with nested encodings", () => {
+		// HTML entity decoding to a URL encoded character (%3A)
+		expect(sanitizeUrl("javascript&#37;3aalert(1)")).toBe("#");
+		expect(sanitizeUrl("javascript&#x25;3aalert(1)")).toBe("#");
+		// URL encoding an HTML entity
+		expect(sanitizeUrl("javascript%26%2358%3Balert(1)")).toBe("#");
+	});
+
 	it("should return # for non-string inputs", () => {
 		expect(sanitizeUrl(null)).toBe("#");
 		expect(sanitizeUrl(undefined)).toBe("#");

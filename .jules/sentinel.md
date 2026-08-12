@@ -22,7 +22,17 @@
 **Vulnerability:** Missing Content-Security-Policy (CSP) Header in vercel.json.
 **Learning:** A basic CSP header mitigates XSS risks and is a straightforward configuration improvement.
 **Prevention:** Ensure CSP is configured in the web server settings by default.
+## 2024-05-20 - Incomplete URL Sanitization
+
+**Vulnerability:** A URL sanitization function validated a URL after decoding entities and stripping control characters, but returned the original, un-decoded, potentially obfuscated string instead of the safe version.
+**Learning:** Always return the sanitized version of a string, not the original input. Validating a safe copy while returning the dangerous original bypasses the sanitization effort entirely.
+**Prevention:** Ensure functions that manipulate and validate input strings (like removing control characters or decoding HTML entities) return the modified, validated string. Write tests that assert the return value is the expected sanitized string, not just that it blocks known bad inputs.
 ## 2026-05-20 - Defense-in-Depth via Permissions-Policy Header
 **Vulnerability:** Missing `Permissions-Policy` header allows potential access to sensitive browser features (camera, microphone, geolocation) by malicious scripts or third-party embeds in the event of an XSS attack.
 **Learning:** Security headers like `Permissions-Policy` (formerly `Feature-Policy`) provide a crucial secondary layer of defense, restricting browser API access globally even if other application-level mitigations fail, and should be explicitly configured in deployment settings like `vercel.json`.
 **Prevention:** Regularly audit and apply modern security headers in deployment configuration files (`vercel.json`, `next.config.js`, etc.) to proactively restrict access to unnecessary but sensitive browser features.
+
+## 2026-05-20 - Prevent XSS via URL Encoding Obfuscation
+**Vulnerability:** The `sanitizeUrl` function in `src/lib/security.js` prevented XSS by verifying HTML entities and stripping control characters, but failed to URL decode input. Obfuscated malicious protocols, like `%6a%61%76%61%73%63%72%69%70%74%3aalert(1)` (URL encoded `javascript:alert(1)`), could bypass checks since the browser would decode the URL in attributes.
+**Learning:** Browsers implicitly URL decode attribute strings. Sanitization layers must iteratively decode standard URL encodings (and double encodings) before comparing the input against protocol blocklists.
+**Prevention:** Implement a `do...while` loop utilizing `decodeURIComponent` (safeguarded within a `try...catch`) at the start of sanitization logic. This guarantees all layers of percent-encoding are unraveled prior to evaluating potentially dangerous schemes.

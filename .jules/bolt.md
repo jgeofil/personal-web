@@ -1,3 +1,6 @@
+## 2026-05-20 - Dynamic Imports module destructuring
+**Learning:** Modern bundlers and runtimes (like Node/Bun) often expose both the named exports directly on the module namespace object returned by a dynamic import *and* nested inside a `default` property (if they originate from standard ESM). Attempting to destructure deep into the `default` object when the named export is readily available on the top-level namespace is not only unnecessary but can cause severe runtime errors if the toolchain doesn't construct the default object as expected.
+**Action:** When dynamically importing third-party libraries, inspect the module namespace structure using a temporary script before assuming `default` exports are required for destructuring. Rely on the top-level named exports if they are provided, as it is robust and standard.
 ## 2026-03-24 - Performance optimizations
 **Learning:** Standard performance optimizations for images in Astro components include adding `loading="lazy"`, `width`, and `height` attributes to `<img>` tags.
 **Action:** Consistently add `loading="lazy"` to below-the-fold or grid images to improve LCP and initial page load times.
@@ -14,6 +17,12 @@
 **Learning:** Third-party analytics scripts like PostHog, Statsig, and Vercel Analytics can significantly impact initial load performance and increase Total Blocking Time (TBT) if loaded and executed immediately on the main thread.
 **Action:** Wrap the dynamic import and initialization logic for these third-party scripts in `requestIdleCallback` (with a `setTimeout` fallback). Also, use `<link rel="preconnect" href="<API_HOST>" />` in the `<head>` to reduce network connection latency.
 
+## 2026-05-20 - Remove Stale Comments
+**Learning:** Outdated or completed "Optimize:" comments can clutter the codebase and reduce maintainability.
+**Action:** When working on code health, ensure comments accurately reflect the current state of the code and remove those that point to optimizations already implemented.
 ## 2026-05-20 - Optimize object iteration
 **Learning:** Using a `for...in` loop is significantly faster than `Object.entries().reduce()` for simple object iteration and string replacements, avoiding array allocations and callback overhead.
-**Action:** Prefer `for...in` loops over `Object.entries().reduce()` in performance-critical paths, such as analytics reporting loops.
+Action: Prefer for...in loops (with an Object.hasOwn() check) over Object.entries().reduce() in performance-critical paths, such as analytics reporting loops.
+## 2026-06-10 - Defer third-party inline scripts to improve Total Blocking Time (TBT)
+**Learning:** Inline scripts that inject third-party tags (like Google Tag Manager) can block the main thread and delay initial rendering if executed immediately, increasing Total Blocking Time (TBT).
+**Action:** Wrap inline script insertion logic for non-critical third-party integrations in `requestIdleCallback` (with a `setTimeout` fallback) to defer their execution until the main thread is idle.

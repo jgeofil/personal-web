@@ -1,4 +1,4 @@
-import { onCLS, onFCP, onFID, onLCP, onTTFB } from "web-vitals";
+import { onCLS, onFCP, onINP, onLCP, onTTFB } from "web-vitals";
 
 const vitalsUrl = "https://vitals.vercel-analytics.com/v1/vitals";
 
@@ -20,8 +20,10 @@ export function sendToAnalytics(metric, options) {
 	// for simple object iteration as it avoids array allocations and callback overhead.
 	let page = options.path || options.page || "";
 	const params = options.params || {};
-	for (const key in params) {
-		page = page.replace(params[key], `[${key}]`);
+for (const key in params) {
+		if (Object.hasOwn(params, key)) {
+			page = page.replaceAll(params[key], `[${key}]`);
+		}
 	}
 
 	const body = {
@@ -59,7 +61,7 @@ export function sendToAnalytics(metric, options) {
  */
 export function webVitals(options) {
 	try {
-		onFID((metric) => sendToAnalytics(metric, options));
+		onINP((metric) => sendToAnalytics(metric, options));
 		onTTFB((metric) => sendToAnalytics(metric, options));
 		onLCP((metric) => sendToAnalytics(metric, options));
 		onCLS((metric) => sendToAnalytics(metric, options));

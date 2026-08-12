@@ -38,6 +38,22 @@ describe("sanitizeUrl", () => {
 		expect(sanitizeUrl("data\t:text/html,<html>")).toBe("#");
 	});
 
+	it("should block HTML entity obfuscated protocols", () => {
+		expect(sanitizeUrl("j&#x61;vascript:alert(1)")).toBe("#");
+		expect(sanitizeUrl("&#106;avascript:alert(1)")).toBe("#");
+		expect(sanitizeUrl("javascript&#58;alert(1)")).toBe("#");
+		expect(sanitizeUrl("java&Tab;script:alert(1)")).toBe("#");
+		expect(sanitizeUrl("java&NewLine;script:alert(1)")).toBe("#");
+		expect(sanitizeUrl("&Tab;javascript:alert(1)")).toBe("#");
+		expect(sanitizeUrl("&#x6A;&#x61;&#x76;&#x61;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x3A;alert(1)")).toBe("#");
+	});
+
+	it("should block semicolon-less HTML entity obfuscated protocols", () => {
+		expect(sanitizeUrl("j&#x61vascript:alert(1)")).toBe("#");
+		expect(sanitizeUrl("&#106avascript:alert(1)")).toBe("#");
+		expect(sanitizeUrl("javascript&#58alert(1)")).toBe("#");
+	});
+
 	it("should return # for non-string inputs", () => {
 		expect(sanitizeUrl(null)).toBe("#");
 		expect(sanitizeUrl(undefined)).toBe("#");

@@ -114,4 +114,20 @@ export const prerender = true;
 		font-size: 1.5em;
 	}
 
+	/* Optimize: Hoisted duplicated table styles from child components (Funding, Project, Publication, DatedRow)
+	   to the parent component to significantly reduce the bundled CSS payload size. Astro's default scoped
+	   styles previously duplicated these rules for every single component instance. */
+	:global(table) {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	:global(td) {
+		padding-right: 0.5em;
+		vertical-align: top;
+	}
+
+	:global(.date-col) {
+		width: 15%;
+	}
 </style>

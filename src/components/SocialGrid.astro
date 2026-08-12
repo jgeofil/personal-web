@@ -1,25 +1,22 @@
 ---
 import { sanitizeUrl } from "../lib/security.js";
+import { formatPlatform } from "../lib/formatters.js";
+
 const { items } = Astro.props;
 const ICON_SIZE = 48;
 
-const formatPlatform = (icon) => {
-	const platforms = {
-		googlescholar: 'Google Scholar',
-		github: 'GitHub',
-		linkedin: 'LinkedIn',
-		x: 'X (Twitter)'
-	};
-	return platforms[icon] || icon;
-};
+// Optimize: Moved the formatPlatform function and its internal platforms map
+// to a separate utility file. By hoisting this static object and function
+// out of the component, we avoid instantiating them on every render cycle,
+// saving memory allocations and speeding up list rendering.
 ---
 
-<ul class="list-grid">
+<ul role="list" class="list-grid">
 	{items.map((item, index) => (
 		<li><a href={sanitizeUrl(item.url)} target="_blank" rel="noopener noreferrer" title={`${formatPlatform(item.icon)}: ${item.title}`}>
 			<span class="sr-only">{formatPlatform(item.icon)}: {item.title} (opens in a new tab)</span>
 			<!-- Optimize: lazy loading images improves LCP. Explicit width/height prevents Cumulative Layout Shift (CLS) -->
-			<img src={item.icon_url ? item.icon_url : `https://cdn.simpleicons.org/${item.icon}/${item.color}`} alt="" aria-hidden="true" loading="lazy" width={ICON_SIZE} height={ICON_SIZE} /></a></li>
+			<img src={sanitizeUrl(item.icon_url ? item.icon_url : `https://cdn.simpleicons.org/${item.icon}/${item.color}`)} alt="" aria-hidden="true" loading="lazy" width={ICON_SIZE} height={ICON_SIZE} /></a></li>
 	))}
 </ul>
 <style define:vars={{ iconSize: `${ICON_SIZE}px` }}>

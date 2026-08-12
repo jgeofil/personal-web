@@ -1,4 +1,4 @@
-import { onCLS, onFCP, onFID, onLCP, onTTFB } from "web-vitals";
+import { onCLS, onFCP, onINP, onLCP, onTTFB } from "web-vitals";
 
 const vitalsUrl = "https://vitals.vercel-analytics.com/v1/vitals";
 
@@ -13,13 +13,18 @@ function getConnectionSpeed() {
 
 /**
  * @param {import("web-vitals").Metric} metric
- * @param {{ params: { [s: string]: any; } | ArrayLike<any>; path: string; analyticsId: string; debug: boolean; }} options
+ * @param {{ params?: { [s: string]: any; } | ArrayLike<any>; path?: string; page?: string; analyticsId: string; debug?: boolean; }} options
  */
 export function sendToAnalytics(metric, options) {
-	const page = Object.entries(options.params).reduce(
-		(acc, [key, value]) => acc.replace(value, `[${key}]`),
-		options.path
-	);
+	// Optimize: Using a for...in loop is faster than Object.entries().reduce()
+	// for simple object iteration as it avoids array allocations and callback overhead.
+	let page = options.path || options.page || "";
+	const params = options.params || {};
+for (const key in params) {
+		if (Object.hasOwn(params, key)) {
+			page = page.replaceAll(params[key], `[${key}]`);
+		}
+	}
 
 	const body = {
 		dsn: options.analyticsId,
@@ -56,7 +61,7 @@ export function sendToAnalytics(metric, options) {
  */
 export function webVitals(options) {
 	try {
-		onFID((metric) => sendToAnalytics(metric, options));
+		onINP((metric) => sendToAnalytics(metric, options));
 		onTTFB((metric) => sendToAnalytics(metric, options));
 		onLCP((metric) => sendToAnalytics(metric, options));
 		onCLS((metric) => sendToAnalytics(metric, options));

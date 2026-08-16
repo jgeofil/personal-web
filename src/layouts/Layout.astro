@@ -27,8 +27,6 @@ const { title, description } = Astro.props as Props;
                     f.parentNode.insertBefore(j, f);
                 })(window, document, "script", "dataLayer", "GTM-55MBXTJF");
             };
-
-            // <!-- Optimize: Defer inline script execution to improve Total Blocking Time (TBT) by using requestIdleCallback with a setTimeout fallback. -->
             if ('requestIdleCallback' in window) {
                 requestIdleCallback(initGTM);
             } else {

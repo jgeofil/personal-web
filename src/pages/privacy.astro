@@ -6,8 +6,7 @@ const IFRAME_HEIGHT = '800px';
 
 <Layout title="Privacy Policy" description="Privacy Policy">
 	<main>
-		<nav aria-label="Breadcrumb" class="breadcrumb"><a href="/">&larr; Back to Home</a></nav>
-		<iframe title="Privacy Policy Document" src="https://docs.google.com/document/d/e/2PACX-1vS_xYTgSEvcNVvb7NH6yYZ4GeAwKrQm4nMp4YY3z58Ozl3OEl6_XGT1fp3mcRCyqONCHoy7ITmuk9DZ/pub?embedded=true" height={IFRAME_HEIGHT} sandbox="allow-scripts allow-same-origin"></iframe>
+		<iframe src="https://docs.google.com/document/d/e/2PACX-1vS_xYTgSEvcNVvb7NH6yYZ4GeAwKrQm4nMp4YY3z58Ozl3OEl6_XGT1fp3mcRCyqONCHoy7ITmuk9DZ/pub?embedded=true" height={IFRAME_HEIGHT} sandbox="allow-scripts allow-same-origin"></iframe>
 	</main>
 </Layout>
 
@@ -22,16 +21,4 @@ const IFRAME_HEIGHT = '800px';
 		height: var(--iframeHeight);
 		border: none;
 	}
-
-	.breadcrumb {
-		margin-bottom: 1em;
-		font-size: 1.1em;
-	}
-	.breadcrumb a {
-		text-decoration: none;
-	}
-	.breadcrumb a:hover {
-		text-decoration: underline;
-	}
-
 </style>

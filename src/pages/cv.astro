@@ -15,7 +15,6 @@ export const prerender = true;
 
 <Layout title="Jeremy Georges-Filteau - CV" description='You can find my CV here.'>
 	<main>
-		<nav aria-label="Breadcrumb" class="breadcrumb"><a href="/">&larr; Back to Home</a></nav>
 		<h1>Jeremy Georges-Filteau</h1>
 		
 		<p>
@@ -131,21 +130,4 @@ export const prerender = true;
 	:global(.date-col) {
 		width: 15%;
 	}
-
-	.breadcrumb {
-		margin-bottom: 2em;
-		font-size: 1.1em;
-	}
-	.breadcrumb a {
-		text-decoration: none;
-	}
-	.breadcrumb a:hover {
-		text-decoration: underline;
-	}
-	@media print {
-		.breadcrumb {
-			display: none;
-		}
-	}
-
 </style>

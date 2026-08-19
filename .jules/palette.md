@@ -17,3 +17,6 @@
 ## 2024-05-24 - Safari VoiceOver list semantics bug
 **Learning:** Safari and VoiceOver remove list semantics from `<ul>` elements when `list-style: none` is applied. This prevents screen reader users from accessing list navigation features (like item counts).
 **Action:** Always explicitly add `role="list"` to `<ul>` or `<ol>` elements when using `list-style: none` to ensure list semantics are preserved for all screen readers.
+## 2025-01-30 - Subpage Navigation and Print Considerations
+**Learning:** Adding intuitive breadcrumb navigation to subpages significantly improves user flow back to the main site. However, for printable documents like a CV, it's critical to hide these web-specific navigation elements using `@media print` to maintain a clean physical copy. Also, `<iframe>` elements without a `title` are inaccessible to screen reader users.
+**Action:** Always include breadcrumbs or "back" links on leaf pages. Ensure all UI controls are hidden in print stylesheets for document-like pages. Always ensure `<iframe>` elements have descriptive `title` attributes.

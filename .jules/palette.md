@@ -17,3 +17,7 @@
 ## 2024-05-24 - Safari VoiceOver list semantics bug
 **Learning:** Safari and VoiceOver remove list semantics from `<ul>` elements when `list-style: none` is applied. This prevents screen reader users from accessing list navigation features (like item counts).
 **Action:** Always explicitly add `role="list"` to `<ul>` or `<ol>` elements when using `list-style: none` to ensure list semantics are preserved for all screen readers.
+
+## 2024-05-25 - Screen reader noise from contact separators
+**Learning:** Text separators like `|` in contact info headers are read aloud by screen readers ("vertical line"), creating unnecessary noise.
+**Action:** Always wrap purely decorative text separators in `<span aria-hidden="true">` to ensure a cleaner screen reader experience.

@@ -31,9 +31,3 @@
 **Vulnerability:** The `sanitizeUrl` function in `src/lib/security.js` prevented XSS by verifying HTML entities and stripping control characters, but failed to URL decode input. Obfuscated malicious protocols, like `%6a%61%76%61%73%63%72%69%70%74%3aalert(1)` (URL encoded `javascript:alert(1)`), could bypass checks since the browser would decode the URL in attributes.
 **Learning:** Browsers implicitly URL decode attribute strings. Sanitization layers must iteratively decode standard URL encodings (and double encodings) before comparing the input against protocol blocklists.
 **Prevention:** Implement a `do...while` loop utilizing `decodeURIComponent` (safeguarded within a `try...catch`) at the start of sanitization logic. This guarantees all layers of percent-encoding are unraveled prior to evaluating potentially dangerous schemes.
-
-
-## 2026-07-29 - Nested Encoding XSS Bypass
-**Vulnerability:** URL sanitizer was vulnerable to nested encodings (e.g., HTML entities containing URL encoded characters like `&#x25;6aavascript:alert(1)`).
-**Learning:** Sequential decoding (URL then HTML) fails against nested payloads because the inner encoding is only revealed after the outer is decoded.
-**Prevention:** Always perform interdependent decodings (like HTML entity and URL decoding) iteratively in the same loop until the string stops changing to safely unpack all layers of obfuscation.

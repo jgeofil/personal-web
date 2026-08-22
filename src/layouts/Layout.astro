@@ -107,9 +107,11 @@ const { title, description } = Astro.props as Props;
         </script>
     </head>
     <body>
+        <a href="#main-content" class="skip-to-main">Skip to main content</a>
         <!-- Google Tag Manager (noscript) -->
         <noscript
             ><iframe
+                title="Google Tag Manager"
                 src="https://www.googletagmanager.com/ns.html?id=GTM-55MBXTJF"
                 height="0"
                 width="0"
@@ -124,6 +126,34 @@ const { title, description } = Astro.props as Props;
     </body>
 </html>
 <style>
+    .skip-to-main {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+        top: 0;
+        left: 0;
+        background: var(--color-bg);
+        color: var(--color-text);
+        z-index: 100;
+    }
+    .skip-to-main:focus-visible {
+        width: auto;
+        height: auto;
+        padding: 1rem;
+        margin: 0;
+        overflow: visible;
+        clip: auto;
+        white-space: normal;
+        outline: 2px solid var(--color-link);
+        outline-offset: 2px;
+    }
+
     :root {
         --font-size-sm: clamp(0.875rem, 0.5vw + 0.5rem, 1rem);
         --font-size-base: clamp(1rem, 0.3vw + 1rem, 1.2rem);

@@ -6,6 +6,7 @@ const IFRAME_HEIGHT = '800px';
 
 <Layout title="Privacy Policy" description="Privacy Policy">
 	<main>
+		<nav aria-label="Breadcrumb" class="back-nav"><a href="/" class="back-link">&larr; Back to Home</a></nav>
 		<iframe src="https://docs.google.com/document/d/e/2PACX-1vS_xYTgSEvcNVvb7NH6yYZ4GeAwKrQm4nMp4YY3z58Ozl3OEl6_XGT1fp3mcRCyqONCHoy7ITmuk9DZ/pub?embedded=true" height={IFRAME_HEIGHT} sandbox="allow-scripts allow-same-origin"></iframe>
 	</main>
 </Layout>
@@ -20,5 +21,24 @@ const IFRAME_HEIGHT = '800px';
 		width: 100%;
 		height: var(--iframeHeight);
 		border: none;
+	}
+
+	.back-nav {
+		margin-bottom: 1.5rem;
+	}
+	.back-link {
+		text-decoration: none;
+		font-weight: bold;
+		display: inline-flex;
+		align-items: center;
+		padding: 0.5rem 1rem;
+		border-radius: 0.25rem;
+		background-color: var(--color-bg);
+		border: 1px solid var(--color-border);
+		transition: background-color 0.2s ease, transform 0.2s ease;
+	}
+	.back-link:hover, .back-link:focus-visible {
+		background-color: var(--color-border);
+		transform: translateX(-2px);
 	}
 </style>

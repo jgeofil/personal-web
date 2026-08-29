@@ -24,3 +24,5 @@ pnpm-debug.log*
 .astro/
 .astro/*
 package-lock.json
+.repo_memory/
+.env*

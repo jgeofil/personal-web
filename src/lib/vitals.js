@@ -19,10 +19,17 @@ export function sendToAnalytics(metric, options) {
 	// Optimize: Using a for...in loop is faster than Object.entries().reduce()
 	// for simple object iteration as it avoids array allocations and callback overhead.
 	let page = options.path || options.page || "";
-	const params = options.params || {};
-for (const key in params) {
-		if (Object.hasOwn(params, key)) {
-			page = page.replaceAll(params[key], `[${key}]`);
+	const params = typeof options.params === "string" ? new URLSearchParams(options.params) : options.params || {};
+
+	if (params instanceof URLSearchParams) {
+		for (const [key, value] of params) {
+			page = page.replaceAll(value, `[${key}]`);
+		}
+	} else {
+		for (const key in params) {
+			if (Object.hasOwn(params, key)) {
+				page = page.replaceAll(params[key], `[${key}]`);
+			}
 		}
 	}
 

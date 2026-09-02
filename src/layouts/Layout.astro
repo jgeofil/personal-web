@@ -35,7 +35,17 @@ const { title, description } = Astro.props as Props;
         </script>
         <!-- End Google Tag Manager -->
         <!-- Metricool -->
-        <script is:inline>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"5b84a4734cafad42e9fd1d745450bec7"})});</script>
+        <script is:inline>
+            const initMetricool = () => {
+                function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}
+                loadScript(function(){beTracker.t({hash:"5b84a4734cafad42e9fd1d745450bec7"})});
+            };
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(initMetricool);
+            } else {
+                setTimeout(initMetricool, 1);
+            }
+        </script>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />

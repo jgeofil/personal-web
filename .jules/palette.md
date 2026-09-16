@@ -21,3 +21,6 @@
 ## 2024-05-25 - Screen reader noise from contact separators
 **Learning:** Text separators like `|` in contact info headers are read aloud by screen readers ("vertical line"), creating unnecessary noise.
 **Action:** Always wrap purely decorative text separators in `<span aria-hidden="true">` to ensure a cleaner screen reader experience.
+## 2024-09-16 - Add Skip-to-content link
+**Learning:** Centralizing skip links in layout components requires consumer pages to coordinate by explicitly providing the anchor ID (e.g. `id="main-content"`). This pattern enforces consistency but creates an implicit contract.
+**Action:** Always check the root layout file when implementing global accessibility features like skip links to ensure they cascade correctly across all views, and document required IDs.

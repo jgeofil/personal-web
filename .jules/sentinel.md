@@ -31,3 +31,8 @@
 **Vulnerability:** The `sanitizeUrl` function in `src/lib/security.js` prevented XSS by verifying HTML entities and stripping control characters, but failed to URL decode input. Obfuscated malicious protocols, like `%6a%61%76%61%73%63%72%69%70%74%3aalert(1)` (URL encoded `javascript:alert(1)`), could bypass checks since the browser would decode the URL in attributes.
 **Learning:** Browsers implicitly URL decode attribute strings. Sanitization layers must iteratively decode standard URL encodings (and double encodings) before comparing the input against protocol blocklists.
 **Prevention:** Implement a `do...while` loop utilizing `decodeURIComponent` (safeguarded within a `try...catch`) at the start of sanitization logic. This guarantees all layers of percent-encoding are unraveled prior to evaluating potentially dangerous schemes.
+
+## 2026-09-09 - Conflicting Content-Security-Policy Headers
+**Vulnerability:** Duplicated and conflicting Content-Security-Policy headers in vercel.json.
+**Learning:** Defining multiple CSP headers applies the intersection of the rules, which can break intended functionality if one is too strict or lacks proper whitelisting (like blocking tracking tools), while a permissive one might trick developers into thinking the app is secure if they don't realize the intersection is applied.
+**Prevention:** Always consolidate Content-Security-Policy directives into a single, unified header to ensure clear, consistent enforcement of security boundaries without breaking site analytics or resources.

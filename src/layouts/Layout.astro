@@ -25,6 +25,8 @@ const { title, description } = Astro.props as Props;
             })(window, document, "script", "dataLayer", "GTM-55MBXTJF");
         </script>
         <!-- End Google Tag Manager -->
+        <!-- Optimize: Preconnect to Metricool to establish early DNS, TCP, and TLS connections before the inline script evaluates, reducing script latency. -->
+        <link rel="preconnect" href="https://tracker.metricool.com" />
         <!-- Metricool -->
         <script is:inline>
             const initMetricool = () => {

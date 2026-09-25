@@ -7,3 +7,8 @@
 **Vulnerability:** The `<Card />` Astro component accepted an `href` prop and outputted it directly into an anchor tag without sanitization. This allowed the potential for Cross-Site Scripting (XSS) if malicious URLs (like `javascript:alert(1)`) were passed to the component.
 **Learning:** Even static components that render links from props can be vectors for XSS if those props can be controlled by external data or unsanitized user input in the future.
 **Prevention:** Always sanitize URLs using a robust utility (e.g., `sanitizeUrl` to strip dangerous protocols like `javascript:`, `data:`, etc.) before rendering them into `href` attributes in UI components.
+
+## 2026-04-21 - Restrict Iframe Capabilities with Sandbox Attribute
+**Vulnerability:** The iframe in `src/pages/privacy.astro` used to embed a Google Doc was missing a `sandbox` attribute.
+**Learning:** Iframes without a `sandbox` attribute have full access to browser features (within the same-origin policy), which can be exploited if the embedded content is compromised or malicious.
+**Prevention:** Always apply a `sandbox` attribute to iframes, specifying only the minimum required permissions (e.g., `allow-scripts allow-same-origin`) to reduce the attack surface.

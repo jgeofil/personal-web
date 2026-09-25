@@ -6,18 +6,3 @@ const { row } = Astro.props;
 	<td class="date-col">{row.date}</td>
 	<td>{row.authors}, <b>{row.title}</b>, {row.journal}</td>
 </tr>
-<style>
-	table {
-		width: 100%;
-		table-layout: fixed;
-	}
-
-	td {
-		padding-right: 0.5em;
-		vertical-align: top;
-	}
-
-	.date-col {
-		width: 15%;
-	}
-</style>

@@ -19,7 +19,7 @@ const ICON_SIZE = 48;
 			<img src={sanitizeUrl(item.icon_url ? item.icon_url : `https://cdn.simpleicons.org/${item.icon}/${item.color}`)} alt="" aria-hidden="true" loading="lazy" width={ICON_SIZE} height={ICON_SIZE} /></a></li>
 	))}
 </ul>
-<style define:vars={{ iconSize: `${ICON_SIZE}px` }}>
+<style>
 	ul {
 		list-style: none;
 		
@@ -34,8 +34,8 @@ const ICON_SIZE = 48;
 	}
 
 	img {
-		width: var(--iconSize);
-		height: var(--iconSize);
+		width: 48px;
+		height: 48px;
 		transition: transform 0.2s ease-in-out;
 		will-change: transform;
 	}

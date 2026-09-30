@@ -24,3 +24,6 @@
 ## 2024-09-16 - Add Skip-to-content link
 **Learning:** Centralizing skip links in layout components requires consumer pages to coordinate by explicitly providing the anchor ID (e.g. `id="main-content"`). This pattern enforces consistency but creates an implicit contract.
 **Action:** Always check the root layout file when implementing global accessibility features like skip links to ensure they cascade correctly across all views, and document required IDs.
+## 2024-05-24 - Consistent Link Targets
+**Learning:** Users naturally expect primary identifiers (like titles) to be clickable rather than secondary text (like descriptions). Inconsistent click targets across similar lists create friction.
+**Action:** Standardize link targets to anchor on titles across all list components.

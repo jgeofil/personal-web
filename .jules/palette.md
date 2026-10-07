@@ -24,3 +24,6 @@
 ## 2024-09-16 - Add Skip-to-content link
 **Learning:** Centralizing skip links in layout components requires consumer pages to coordinate by explicitly providing the anchor ID (e.g. `id="main-content"`). This pattern enforces consistency but creates an implicit contract.
 **Action:** Always check the root layout file when implementing global accessibility features like skip links to ensure they cascade correctly across all views, and document required IDs.
+## 2025-01-30 - Iframe Accessibility
+**Learning:** Iframes without a title attribute are announced by screen readers using their source URL, which provides zero context.
+**Action:** Always add a descriptive title attribute to iframe elements to comply with WCAG SC 4.1.2.

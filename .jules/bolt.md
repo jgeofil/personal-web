@@ -13,3 +13,6 @@
 ## 2025-02-13 - Astro define:vars HTML bloat
 **Learning:** Using `define:vars` in Astro `<style>` tags for static constants forces Astro to inline CSS variables into the HTML element's `style` attribute on *every single rendered instance* in loops.
 **Action:** Replace `define:vars` with hardcoded CSS values or static CSS variables defined in global context when the variable is a constant across all instances, dramatically reducing HTML size and improving render speed.
+## 2024-10-07 - CDN Preconnection & LCP
+**Learning:** Third-party image CDNs (like cdn.simpleicons.org) incur DNS/TCP delays. Also, using `loading="lazy"` on above-the-fold UI components drastically delays the LCP.
+**Action:** Add `<link rel="preconnect">` for critical third-party domains in the layout and always use `loading="eager"` for components that render above the fold.

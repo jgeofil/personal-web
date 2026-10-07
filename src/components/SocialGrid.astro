@@ -15,8 +15,8 @@ const ICON_SIZE = 48;
 	{items.map((item, index) => (
 		<li><a href={sanitizeUrl(item.url)} target="_blank" rel="noopener noreferrer" title={`${formatPlatform(item.icon)}: ${item.title} (opens in a new tab)`}>
 			<span class="sr-only">{formatPlatform(item.icon)}: {item.title} (opens in a new tab)</span>
-			<!-- Optimize: lazy loading images improves LCP. Explicit width/height prevents Cumulative Layout Shift (CLS) -->
-			<img src={sanitizeUrl(item.icon_url ? item.icon_url : `https://cdn.simpleicons.org/${item.icon}/${item.color}`)} alt="" aria-hidden="true" loading="lazy" width={ICON_SIZE} height={ICON_SIZE} /></a></li>
+			<!-- Optimize: eager loading images improves LCP for above-the-fold content. Explicit width/height prevents CLS -->
+			<img src={sanitizeUrl(item.icon_url ? item.icon_url : `https://cdn.simpleicons.org/${item.icon}/${item.color}`)} alt="" aria-hidden="true" loading="eager" width={ICON_SIZE} height={ICON_SIZE} /></a></li>
 	))}
 </ul>
 <style>
@@ -37,7 +37,7 @@ const ICON_SIZE = 48;
 		width: 48px;
 		height: 48px;
 		transition: transform 0.2s ease-in-out;
-		will-change: transform;
+
 	}
 
 	a:is(:hover, :focus-visible) img {

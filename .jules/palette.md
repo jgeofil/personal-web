@@ -24,3 +24,6 @@
 ## 2024-09-16 - Add Skip-to-content link
 **Learning:** Centralizing skip links in layout components requires consumer pages to coordinate by explicitly providing the anchor ID (e.g. `id="main-content"`). This pattern enforces consistency but creates an implicit contract.
 **Action:** Always check the root layout file when implementing global accessibility features like skip links to ensure they cascade correctly across all views, and document required IDs.
+## 2024-10-14 - Skip Link Target Focus
+**Learning:** In Astro/SPA applications, skip-to-content links require the target element (e.g., `<main>`) to have `tabindex="-1"` for focus to programmatically shift to it. Without it, screen readers may not read the new context, and keyboard focus may jump back to the top. It's also important to add `outline: none` to the target to prevent a large focus ring around the entire main content area when it receives programmatic focus.
+**Action:** Always add `tabindex="-1"` to the target of a skip link and suppress its focus ring in the global CSS.

@@ -36,3 +36,8 @@
 **Vulnerability:** Duplicated and conflicting Content-Security-Policy headers in vercel.json.
 **Learning:** Defining multiple CSP headers applies the intersection of the rules, which can break intended functionality if one is too strict or lacks proper whitelisting (like blocking tracking tools), while a permissive one might trick developers into thinking the app is secure if they don't realize the intersection is applied.
 **Prevention:** Always consolidate Content-Security-Policy directives into a single, unified header to ensure clear, consistent enforcement of security boundaries without breaking site analytics or resources.
+
+## 2026-01-30 - URL Sanitization Unicode Evasion
+**Vulnerability:** The URL sanitizer could be bypassed using Unicode control characters (like zero-width space `\u200B`) and secondary URL encoding.
+**Learning:** Malicious inputs can use non-standard Unicode whitespace or re-encode parts of a URL after HTML entities are decoded to evade protocol blocklists like `javascript:`.
+**Prevention:** Ensure URL sanitizers strip Unicode format characters and perform recursive URL decoding after stripping control characters.

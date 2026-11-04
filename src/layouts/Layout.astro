@@ -50,6 +50,8 @@ const { title, description } = Astro.props as Props;
         <meta name="title" content={title} />
         <meta name="description" content={description} />
         <title>{title}</title>
+        <!-- Optimize: Preconnect to Simple Icons CDN to establish early DNS, TCP, and TLS connections before images are parsed, reducing image fetch latency. -->
+        <link rel="preconnect" href="https://cdn.simpleicons.org" crossorigin />
         <link rel="preconnect" href="https://t.mlread.me" />
         <script>
             const analyticsId = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;

@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "ESNext"
-    ],
+    "lib": ["ESNext"],
     "target": "ESNext",
     "module": "esnext",
     "moduleDetection": "force",
@@ -21,7 +19,5 @@
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false
   },
-  "include": [
-    "./worker-configuration.d.ts"
-  ]
+  "include": ["./worker-configuration.d.ts"]
 }

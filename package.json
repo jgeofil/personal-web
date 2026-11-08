@@ -1,7 +1,8 @@
 {
+  "name": "personal-web",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
-  "version": "0.1.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -20,7 +21,6 @@
     "wrangler": "^4.158.0",
     "zod": "^4.6.7"
   },
-  "name": "personal-web",
   "devDependencies": {
     "@types/bun": "latest",
     "cf": "^1.0.0-beta.28"

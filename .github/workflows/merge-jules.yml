@@ -31,14 +31,14 @@ jobs:
           label: sentinel
           repo-token: ${{ secrets.GITHUB_TOKEN }}
   merge-bolt:
-      runs-on: ubuntu-latest
-      if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.label.name == 'bolt' }}
-      steps:
-        - uses: actions/checkout@v2
-          with:
-            ref: main
-            fetch-depth: 0
-        - uses: bobvanderlinden/combine-pull-requests@v4
-          with:
-            label: bolt
-            repo-token: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.label.name == 'bolt' }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: bobvanderlinden/combine-pull-requests@v4
+        with:
+          label: bolt
+          repo-token: ${{ secrets.GITHUB_TOKEN }}

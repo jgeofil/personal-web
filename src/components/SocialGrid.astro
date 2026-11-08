@@ -12,12 +12,16 @@ const ICON_SIZE = 48;
 ---
 
 <ul role="list" class="list-grid">
-	{items.map((item, index) => (
+	{items.map((item) => {
+		const fallbackSrc = `https://cdn.simpleicons.org/${item.icon}/${item.color}`;
+		const primarySrc = item.icon_url ? sanitizeUrl(item.icon_url) : fallbackSrc;
+		const safeFallback = sanitizeUrl(fallbackSrc);
+		return (
 		<li><a href={sanitizeUrl(item.url)} target="_blank" rel="noopener noreferrer" title={`${formatPlatform(item.icon)}: ${item.title}`}>
 			<span class="sr-only">{formatPlatform(item.icon)}: {item.title} (opens in a new tab)</span>
-			<!-- Optimize: lazy loading images improves LCP. Explicit width/height prevents Cumulative Layout Shift (CLS) -->
-			<img src={sanitizeUrl(item.icon_url ? item.icon_url : `https://cdn.simpleicons.org/${item.icon}/${item.color}`)} alt="" aria-hidden="true" loading="lazy" width={ICON_SIZE} height={ICON_SIZE} /></a></li>
-	))}
+			{/* Optimize: lazy loading images improves LCP. Explicit width/height prevents CLS. onerror fallback prevents broken LinkedIn icon when external icon_url is unavailable */}
+			<img src={primarySrc} alt="" aria-hidden="true" loading="lazy" width={ICON_SIZE} height={ICON_SIZE} onerror={`this.onerror=null;this.src='${safeFallback}'`} /></a></li>
+	)})}
 </ul>
 <style define:vars={{ iconSize: `${ICON_SIZE}px` }}>
 	ul {

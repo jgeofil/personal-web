@@ -31,3 +31,6 @@
 ## 2025-01-30 - Icon-Only Link Accessibility
 **Learning:** Using an explicit `aria-label` on an `<a>` tag for an icon-only link is a more direct and robust way to communicate intent to assistive technologies compared to inserting a `.sr-only` span inside the link, which can sometimes result in fragmented announcements.
 **Action:** Prioritize adding `aria-label` directly to interactive elements (like links or buttons) when they only contain non-text content (like icons or images).
+## 2024-10-21 - Card element text accessibility
+**Learning:** Applying whole-element opacity (e.g., `opacity: 0.8`) on interactive cards also affects text opacity, which significantly reduces text contrast and hurts accessibility.
+**Action:** Always apply transparency directly to the background color (e.g., `background-color: rgba(255, 255, 255, 0.8)`) instead of the entire element, ensuring text retains full opacity.

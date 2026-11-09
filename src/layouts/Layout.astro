@@ -12,25 +12,17 @@ const { title, description } = Astro.props as Props;
 <html lang="en">
     <head>
         <!-- Google Tag Manager -->
-        <!-- Optimize: Defer GTM initialization using requestIdleCallback to prevent it from blocking the main thread during initial page load, significantly reducing Total Blocking Time (TBT). -->
         <script is:inline>
-            const initGTM = () => {
-                (function (w, d, s, l, i) {
-                    w[l] = w[l] || [];
-                    w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-                    var f = d.getElementsByTagName(s)[0],
-                        j = d.createElement(s),
-                        dl = l != "dataLayer" ? "&l=" + l : "";
-                    j.async = true;
-                    j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-                    f.parentNode.insertBefore(j, f);
-                })(window, document, "script", "dataLayer", "GTM-55MBXTJF");
-            };
-            if ('requestIdleCallback' in window) {
-                requestIdleCallback(initGTM);
-            } else {
-                setTimeout(initGTM, 1);
-            }
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-55MBXTJF");
         </script>
         <!-- End Google Tag Manager -->
         <!-- Optimize: Preconnect to Metricool to establish early DNS, TCP, and TLS connections before the inline script evaluates, reducing script latency. -->
@@ -59,8 +51,6 @@ const { title, description } = Astro.props as Props;
         <meta name="description" content={description} />
         <title>{title}</title>
         <link rel="preconnect" href="https://t.mlread.me" />
-        <!-- Optimize: Preconnect to simpleicons CDN to establish early DNS, TCP, and TLS connections for faster icon rendering. -->
-        <link rel="preconnect" href="https://cdn.simpleicons.org" />
         <script>
             const analyticsId = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;
             const statsigKey = import.meta.env.PUBLIC_STATSIG_CLIENT_KEY;

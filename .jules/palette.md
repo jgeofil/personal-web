@@ -27,3 +27,6 @@
 ## 2024-10-14 - Skip Link Target Focus
 **Learning:** In Astro/SPA applications, skip-to-content links require the target element (e.g., `<main>`) to have `tabindex="-1"` for focus to programmatically shift to it. Without it, screen readers may not read the new context, and keyboard focus may jump back to the top. It's also important to add `outline: none` to the target to prevent a large focus ring around the entire main content area when it receives programmatic focus.
 **Action:** Always add `tabindex="-1"` to the target of a skip link and suppress its focus ring in the global CSS.
+## 2024-10-21 - Card element text accessibility
+**Learning:** Applying whole-element opacity (e.g., `opacity: 0.8`) on interactive cards also affects text opacity, which significantly reduces text contrast and hurts accessibility.
+**Action:** Always apply transparency directly to the background color (e.g., `background-color: rgba(255, 255, 255, 0.8)`) instead of the entire element, ensuring text retains full opacity.

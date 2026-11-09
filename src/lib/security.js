@@ -1,5 +1,6 @@
-const CONTROL_CHARS_REGEX = /[\x00-\x1F\x7F-\x9F]/g;
-const WHITESPACE_REGEX = /\s+/g;
+const CONTROL_CHARS_REGEX = /[\u0000-\u001F\u007F-\u009F]/g; // eslint-disable-line no-control-regex
+const INVISIBLE_CHARS_REGEX = /[\u00AD\u200B-\u200D\u2060\uFEFF]/g;
+const WHITESPACE_REGEX = /[\s\u200B-\u200D\u2060\uFEFF]+/g;
 const COLON_ENTITY_REGEX = /&colon;/g;
 
 export function sanitizeUrl(url) {
@@ -16,6 +17,7 @@ export function sanitizeUrl(url) {
     try {
       urlDecodedUrl = decodeURIComponent(urlDecodedUrl);
     } catch (e) {
+      console.warn(`Failed to decode URL: ${urlDecodedUrl}`, e);
       // Ignore invalid URL encoding, stick with the last valid decoded string
       break;
     }
@@ -29,9 +31,12 @@ export function sanitizeUrl(url) {
     .replace(/&tab;?/gi, "\t")
     .replace(/&newline;?/gi, "\n");
 
-  // Remove control characters and any characters that browsers may ignore
-  // but could be used for obfuscation (e.g. \x00-\x1F, \x7F-\x9F)
-  const sanitized = decodedUrl.replace(CONTROL_CHARS_REGEX, "").trim();
+  // Remove control characters and invisible Unicode separators/format chars
+  // that browsers may ignore or normalize away for scheme-based obfuscation.
+  const sanitized = decodedUrl
+    .replace(CONTROL_CHARS_REGEX, "")
+    .replace(INVISIBLE_CHARS_REGEX, "")
+    .trim();
 
   if (!sanitized) {
     return "#";

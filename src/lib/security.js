@@ -1,5 +1,5 @@
-const CONTROL_CHARS_REGEX = /[\x00-\x1F\x7F-\x9F]/g;
-const WHITESPACE_REGEX = /\s+/g;
+const CONTROL_CHARS_REGEX = /[\x00-\x20\x7F-\x9F\u200B-\u200D\u2028\u2029\uFEFF]/g;
+const WHITESPACE_REGEX = /[\s\u200B-\u200D\u2028\u2029\uFEFF]+/g;
 const COLON_ENTITY_REGEX = /&colon;/g;
 
 export function sanitizeUrl(url) {
@@ -31,7 +31,14 @@ export function sanitizeUrl(url) {
 
 	// Remove control characters and any characters that browsers may ignore
 	// but could be used for obfuscation (e.g. \x00-\x1F, \x7F-\x9F)
-	const sanitized = decodedUrl.replace(CONTROL_CHARS_REGEX, "").trim();
+	let sanitized = decodedUrl.replace(CONTROL_CHARS_REGEX, "").trim();
+
+	try {
+		// Decode again after trimming control chars if url encoded
+		sanitized = decodeURIComponent(sanitized);
+	} catch (e) {
+		// Ignore
+	}
 
 	if (!sanitized) {
 		return "#";
@@ -41,7 +48,7 @@ export function sanitizeUrl(url) {
 	const lowerUrl = sanitized
 		.toLowerCase()
 		.replace(WHITESPACE_REGEX, "")
-		.replace(COLON_ENTITY_REGEX, ":");
+		.replace(COLON_ENTITY_REGEX, ":").replace(/%3a/g, ":");
 
 	if (
 		lowerUrl.startsWith("javascript:") ||

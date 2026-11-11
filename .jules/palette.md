@@ -31,3 +31,6 @@
 ## 2025-01-30 - Icon-Only Link Accessibility
 **Learning:** Using an explicit `aria-label` on an `<a>` tag for an icon-only link is a more direct and robust way to communicate intent to assistive technologies compared to inserting a `.sr-only` span inside the link, which can sometimes result in fragmented announcements.
 **Action:** Prioritize adding `aria-label` directly to interactive elements (like links or buttons) when they only contain non-text content (like icons or images).
+## 2026-03-24 - Breadcrumb navigation on leaf pages
+**Learning:** Users navigating directly to leaf pages (like /cv or /privacy) or from external links can get trapped without a clear path back to the main site.
+**Action:** Always provide breadcrumb navigation (e.g., a "Back to Home" link) on leaf pages, wrapped in a `<nav aria-label="Breadcrumb">`, to ensure users have an explicit escape path. Hide decorative arrows with `aria-hidden="true"`.

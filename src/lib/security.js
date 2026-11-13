@@ -2,10 +2,18 @@ const CONTROL_CHARS_REGEX = /[\x00-\x1F\x7F-\x9F]/g;
 const WHITESPACE_REGEX = /\s+/g;
 const COLON_ENTITY_REGEX = /&colon;/g;
 
+
+const urlCache = new Map();
+const MAX_CACHE_SIZE = 1000;
+
 export function sanitizeUrl(url) {
 	if (typeof url !== "string") {
 		return "#";
 	}
+	if (urlCache.has(url)) {
+		return urlCache.get(url);
+	}
+
 
 	// URL decode to handle obfuscated protocols like %6a%61%76%61%73%63%72%69%70%74%3a
 	// Try decoding repeatedly to handle double-encoding (e.g. %253A -> %3A -> :)
@@ -52,5 +60,10 @@ export function sanitizeUrl(url) {
 		return "#";
 	}
 
+	urlCache.set(url, sanitized);
+	if (urlCache.size > MAX_CACHE_SIZE) {
+		// Simple eviction: delete the oldest entry to prevent unbounded memory growth
+		urlCache.delete(urlCache.keys().next().value);
+	}
 	return sanitized;
 }

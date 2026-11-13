@@ -1,11 +1,9 @@
 import { defineConfig } from 'astro/config';
-// Use Vercel adapter
-import vercel from '@astrojs/vercel';
+import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
   output: 'server',
-  adapter: vercel({
-    imageService: true,
-    webAnalytics: { enabled: true }
+  adapter: cloudflare({
+    imageService: 'cloudflare',
   }),
 });

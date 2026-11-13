@@ -34,13 +34,6 @@
     "sharp": true,
     "core-js@3.50.0": true
   },
-  "devEngines": {
-    "packageManager": {
-      "name": "npm",
-      "version": "12.0.2",
-      "onFail": "download"
-    }
-  },
   "trustedDependencies": [
     "core-js"
   ]
